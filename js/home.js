@@ -49,7 +49,7 @@
 		 locQuery.withinMiles('Geopoints',loc,5);
 		 locQuery.limit(1000);
 		 locQuery.find().then(function(result){
-		 console.log(result);
+		// console.log(result);
 		 localStorage.setItem( 'itemIndex',JSON.stringify(result));
 			
 			  for(var i=0;i<result.length;i++){
@@ -102,7 +102,7 @@
 			var SearchlocItem = Parse.Object.extend("Location");
          var SearchlocQuery = new Parse.Query(SearchlocItem);
 		 SearchlocQuery.find().then(function(result){
-		 console.log(result);
+		// console.log(result);
 		 localStorage.setItem( 'SearchitemIndex',JSON.stringify(result));
 		 });
 		 
@@ -129,7 +129,7 @@
 				 locationaddress2[i]=" ";
 			 }
 			  
-			  console.log(locationId);
+			//  console.log(locationId);
 			   listdir = "<div class='row' ><div class='col s3' ><img class='logo-img' src='"+locationurl[i]+"'/></div>"+
 				"<div class='col s7' ><p > <b style='font-size:13px;' > "+locationtitle[i]+" </b> </p><span> "+locationaddress1[i]+" </span><span> "+locationaddress2[i]+" </span><span> "+locationstreet[i]+" </span><span> "+locationtown[i]+" </span></br><span> "+locationzip[i]+"</span></div>"+
 				"<div class='col s2'><a href='directories.html?id="+locationId[i]+"'> <i class='small material-icons'>input</i> </a></div>"+
