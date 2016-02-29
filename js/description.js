@@ -11,7 +11,7 @@ function myDescription(){
         var item = part.split("=");
         idresult[item[0]] = decodeURIComponent(item[1]);
 		urlid.push(idresult[item[0]]);
-		console.log(urlid[0])
+		//console.log(urlid[0])
 		});
          var headertitle=urlid[2];		
 	      id=urlid[1];
@@ -21,7 +21,7 @@ function myDescription(){
 		
 		var dirresult=localStorage.getItem('directory');
 		var dRes=JSON.parse(dirresult);
-		console.log(dRes);
+		//console.log(dRes);
 		var directory=new Array();
 		var descurl,descweb,descdata,desctitle,descres=0;
 		for(var i=0;i<dRes.length;i++){
@@ -50,8 +50,8 @@ function myDescription(){
 						dircaption[i]=dRes[i].Caption;
 						dirLogo[i]=dRes[i].Picture;
 						dirorder[i]=dRes[i].CustomizedOrder;
-						dirparentid[i]=dRes[i].ParentReferrence;
-						console.log(dirparentid[i]);
+						dirparentid[i]=dRes[i].LocationId;
+						//console.log(dirparentid[i]);
 						dirid[i]=dRes[i].objectId;
 						 styles[i]=dRes[i].StyleId;
 						 
@@ -71,7 +71,7 @@ function myDescription(){
 						if(dircaption[i]==undefined){
 							titlecapDis='display:none;';
 						}
-						console.log(dirorder[i]);
+						//console.log(dirorder[i]);
 						var json={"title":dirtitle[i],
 								  "caption":dircaption[i],
 								  "dirid":dirid[i],
@@ -124,13 +124,13 @@ function myDescription(){
 					dirwebsite=dRes[i].Website;
 					dirpicture=dRes[i].Picture;
 					diremail=dRes[i].Email;
-					dirParentid=dRes[i].ParentReferrence;
+					dirParentid=dRes[i].LocationId;
 					//styles=dRes[i].StyleId;
 					//console.log(dRes[i].StyleId.objectId);
 					var objid=dRes[i].StyleId.objectId;
 					var val=localStorage.getItem('Style');
 	                var StyleId=JSON.parse(val);
-				    console.log(StyleId)
+				   // console.log(StyleId)
 					for(var j=0;j<StyleId.length;j++){
 						if(StyleId[j].objectId==objid){
 					titlefont=StyleId[j].TitleFont;
@@ -175,8 +175,8 @@ function myDescription(){
 					{dirpicture='';pictureDis='display:none';}
 					if((diremail==undefined)||(diremail==''))
 					{diremail='';emailDis='display:none;';}
-					console.log(titlecolor);
-					console.log(titlefont);
+					//console.log(titlecolor);
+					//console.log(titlefont);
 				   descurl="directories.html?id="+dirParentid;
 				   descdata= "<p >"+dirnote+"</p>"+
 					 "<p style='text-align:justify;font-size:"+descrptionfont+"px !important;color:"+descriptioncolor+" !important;'>"+dirdesc+"</p>"+
@@ -188,7 +188,7 @@ function myDescription(){
 					  desctitle=" <div class='container'><div class='row'><div class='col-md-12'><h3 class='text-center backIconHover titlemargin'><p style='font-size:"+titlefont+"px !important;color:"+titlecolor+" !important;'>"+dirtitle+"</p>"+
 								 "<p style='font-size:"+captionfont+"px !important;color:"+captioncolor+" !important;'>"+dircaption+"</p></h3>"+
 								 "</div></div></div>";
-						console.log(desctitle);
+					//	console.log(desctitle);
 					descres=1;
 				
 						
@@ -306,7 +306,7 @@ function myDescription(){
 					if(mRes[i].MenuId==id){
 							 description[i]=mRes[i].Description;
 							 price[i]=mRes[i].Price;
-							 console.log(mRes[i].StyleID);
+						//	 console.log(mRes[i].StyleID);
 							 var objid=mRes[i].StyleID.objectId
 							 var val=localStorage.getItem('Style');
 							  var result=JSON.parse(val);
@@ -335,13 +335,13 @@ function myDescription(){
 		 $("#title").empty();
 		 var parentid=localStorage.getItem('parentid');
 		var parentres=JSON.parse(parentid);
-		 console.log(parentres);
+		// console.log(parentres);
 		  var dirresult=localStorage.getItem('directory');
 		  var dRes=JSON.parse(dirresult);
 		  var directory=new Array();
 		    for(var i=0;i<dRes.length;i++){
 				if((res.test(dRes[i].Title))||(res.test(dRes[i].Keywords))){
-			   if(dRes[i].ParentReferrence==parentres){
+			   if(dRes[i].LocationId==parentres){
 				 var dirid=new Array();
 					
 					var dirtitle=new Array();
@@ -365,7 +365,7 @@ function myDescription(){
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirLogo[i]=dRes[i].DirectoryLogo;
-						dirparentid[i]=dRes[i].ParentReferrence;
+						dirparentid[i]=dRes[i].LocationId;
 						dirid[i]=dRes[i].objectId;
 						 styles[i]=dRes[i].StyleId;
 						 if(dirLogo[i]!=undefined){
@@ -465,13 +465,13 @@ $("#food").click(function(){
 		  $("#phone").empty();
 		 var parentid=localStorage.getItem('parentid');
 		var parentres=JSON.parse(parentid);
-		 console.log(parentres);
+		 //console.log(parentres);
 		  var dirresult=localStorage.getItem('directory');
 		  var dRes=JSON.parse(dirresult);
 		  var directory=new Array();
 		    for(var i=0;i<dRes.length;i++){
 				if((resfood.test(dRes[i].Title))||(resdining.test(dRes[i].Title))||(resrestaurant.test(dRes[i].Title))){
-			   if(dRes[i].ParentReferrence==parentres){
+			   if(dRes[i].LocationId==parentres){
 				 var dirid=new Array();
 					
 					var dirtitle=new Array();
@@ -495,7 +495,7 @@ $("#food").click(function(){
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirLogo[i]=dRes[i].DirectoryLogo;
-						dirparentid[i]=dRes[i].ParentReferrence;
+						dirparentid[i]=dRes[i].LocationId;
 						dirid[i]=dRes[i].objectId;
 						 styles[i]=dRes[i].StyleId;
 						 if(dirLogo[i]!=undefined){
@@ -597,13 +597,13 @@ $("#banking").click(function(){
 		  $("#phone").empty();
 		 var parentid=localStorage.getItem('parentid');
 		var parentres=JSON.parse(parentid);
-		 console.log(parentres);
+		// console.log(parentres);
 		  var dirresult=localStorage.getItem('directory');
 		  var dRes=JSON.parse(dirresult);
 		  var directory=new Array();
 		    for(var i=0;i<dRes.length;i++){
 				if((resatm.test(dRes[i].Title))||(resbank.test(dRes[i].Title))||(resmoney.test(dRes[i].Title))){
-			   if(dRes[i].ParentReferrence==parentres){
+			   if(dRes[i].LocationId==parentres){
 				 var dirid=new Array();
 					
 					var dirtitle=new Array();
@@ -627,7 +627,7 @@ $("#banking").click(function(){
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirLogo[i]=dRes[i].DirectoryLogo;
-						dirparentid[i]=dRes[i].ParentReferrence;
+						dirparentid[i]=dRes[i].LocationId;
 						dirid[i]=dRes[i].objectId;
 						 styles[i]=dRes[i].StyleId;
 						 if(dirLogo[i]!=undefined){
@@ -727,13 +727,13 @@ $("#transport").click(function(){
 		  $("#phone").empty();
 		 var parentid=localStorage.getItem('parentid');
 		var parentres=JSON.parse(parentid);
-		 console.log(parentres);
+		// console.log(parentres);
 		  var dirresult=localStorage.getItem('directory');
 		  var dRes=JSON.parse(dirresult);
 		  var directory=new Array();
 		    for(var i=0;i<dRes.length;i++){
 				if((restransport.test(dRes[i].Title))||(resairport.test(dRes[i].Title))){
-			   if(dRes[i].ParentReferrence==parentres){
+			   if(dRes[i].LocationId==parentres){
 				 var dirid=new Array();
 					
 					var dirtitle=new Array();
@@ -757,7 +757,7 @@ $("#transport").click(function(){
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirLogo[i]=dRes[i].DirectoryLogo;
-						dirparentid[i]=dRes[i].ParentReferrence;
+						dirparentid[i]=dRes[i].LocationId;
 						dirid[i]=dRes[i].objectId;
 						 styles[i]=dRes[i].StyleId;
 						 if(dirLogo[i]!=undefined){

@@ -6,7 +6,7 @@
 	var locationtitile;
 	function myFunction()
   {    
-		
+	localStorage.clear();
 	Parse.initialize(PARSE_APP,PARSE_JS);
 	var query = location.search.substr(1);
        var idresult = {};
@@ -17,14 +17,37 @@
 		});
    var locItem = Parse.Object.extend("Location");
    var locQuery = new Parse.Query(locItem);
-   locQuery.equalTo('Directories',id);
+   locQuery.equalTo('objectId',id);
    locQuery.find().then(function(result){
-	 locationtitile=result[0].get("Name");
-	id=result[0].get("Directories");
-	 localStorage.setItem( 'parentid',JSON.stringify(id));
-	 $("#location").append(locationtitile);
+	  if(result[0]==undefined)
+	  {
+
+			var tempItem = Parse.Object.extend("Template");
+		   var tempQuery = new Parse.Query(tempItem);
+		   tempQuery.equalTo('objectId',id);
+			tempQuery.find().then(function(result){
+			  
+			 
+			   locationtitile=result[0].get("Name");
+			   var parentid=result[0].id;
+			
+				localStorage.setItem( 'parentid',JSON.stringify(parentid));
+				$("#location").append(locationtitile);
+			   });
+		   
+	  }
+	  else{
+		 
+		 locationtitile=result[0].get("Name");
+		id=result[0].get("Directories");
+		localStorage.setItem( 'parentid',JSON.stringify(id));
+	 
+		$("#location").append(locationtitile);
+	  }
+	 
 	
     }).then(function(){
+		
 	    var dItem = Parse.Object.extend("DirectoryItem");
 		var dItemQuery = new Parse.Query(dItem);
 		dItemQuery.limit(1000);
@@ -79,7 +102,7 @@
 						  "dirlogodis": dirlogoDis[i]
 						  };
 				directory.push(json);
-			   console.log(json);
+
 					
 				}
 				
@@ -204,7 +227,7 @@
 					
 					
 						if((res.test(dRes[i].Title))){
-							if(dRes[i].ParentReferrence==id){
+							if(dRes[i].LocationId==id){
 							
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
@@ -238,7 +261,7 @@
 								  "dirlogodis": dirlogoDis[i]
 								  };
 						directory.push(json);
-					   console.log(json);
+					  
 					}
 				 }
 			}
@@ -322,8 +345,8 @@
 					
 					
 						if((resdining.test(dRes[i].Title))||(resfood.test(dRes[i].Title))||(resrestaurant.test(dRes[i].Title))){
-							if(dRes[i].ParentReferrence==id){
-							console.log(dRes[i]);
+							if(dRes[i].LocationId==id){
+							//console.log(dRes[i]);
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirid[i]=dRes[i].objectId;
@@ -356,7 +379,7 @@
 								  "dirlogodis": dirlogoDis[i]
 								  };
 						directory.push(json);
-					   console.log(json);
+					  // console.log(json);
 					}
 				 }
 			}
@@ -441,8 +464,8 @@
 					
 					
 						if((resatm.test(dRes[i].Title))||(resbank.test(dRes[i].Title))||(resmoney.test(dRes[i].Title))){
-							if(dRes[i].ParentReferrence==id){
-							console.log(dRes[i]);
+							if(dRes[i].LocationId==id){
+						//	console.log(dRes[i]);
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirid[i]=dRes[i].objectId;
@@ -475,7 +498,7 @@
 								  "dirlogodis": dirlogoDis[i]
 								  };
 						directory.push(json);
-					   console.log(json);
+					  // console.log(json);
 					}
 				 }
 			}
@@ -557,8 +580,8 @@
 					
 					
 						if((restransport.test(dRes[i].Title))||(resairport.test(dRes[i].Title))){
-							if(dRes[i].ParentReferrence==id){
-							console.log(dRes[i]);
+							if(dRes[i].LocationId==id){
+							//console.log(dRes[i]);
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirid[i]=dRes[i].objectId;
@@ -591,7 +614,7 @@
 								  "dirlogodis": dirlogoDis[i]
 								  };
 						directory.push(json);
-					   console.log(json);
+					//   console.log(json);
 					}
 				 }
 			}
