@@ -37,34 +37,6 @@
 		  
 		  Parse.initialize(PARSE_APP,PARSE_JS);
 		 
-/* 		 var dItem = Parse.Object.extend("DirectoryItem");
-		var dItemQuery = new Parse.Query(dItem);
-		dItemQuery.limit(1000);
-		dItemQuery.include("StyleId")
-		dItemQuery.find(function(result){
-			localStorage.setItem('directory',JSON.stringify(result))
-		});
-		
-		 var mItem = Parse.Object.extend("Menu");
-		  var mItemQuery = new Parse.Query(mItem);
-		  mItemQuery.include("StyleID");
-		  mItemQuery.find({
-		   success: function(mRes){
-			   localStorage.setItem('menu',JSON.stringify(mRes))
-			    
-		   }
-		  });
-		  var pItem = Parse.Object.extend("Phones");
-		  var pItemQuery = new Parse.Query(pItem);
-		  pItemQuery.find({
-		   success: function(pRes){
-			   localStorage.setItem('phones',JSON.stringify(pRes));
-			   var val=localStorage.getItem('phones');
-	              var result=JSON.parse(val);
-				  //console.log(result);
-		   }
-		  }); */
-		 
 		  function UserLocation( position )
       {    
 	         latitude= position.coords.latitude;
@@ -121,18 +93,25 @@
 	}
 //Search box	
     
-    $('#textbox').on("input",function(event){
+     $('#textbox').on("input",function(event){
 		     var listdir;
 			 var listlocations=" ";
 	      var textres = $(this).val();
 		  
 		    $("#locations").empty();
-        var val=localStorage.getItem('itemIndex');
+			var SearchlocItem = Parse.Object.extend("Location");
+         var SearchlocQuery = new Parse.Query(SearchlocItem);
+		 SearchlocQuery.find().then(function(result){
+		 console.log(result);
+		 localStorage.setItem( 'SearchitemIndex',JSON.stringify(result));
+		 });
+		 
+        var val=localStorage.getItem('SearchitemIndex');
 	      var result=JSON.parse(val);
 		 var res = new RegExp(textres,"i");
 		  var resvalue;
 		  for(var i=0;i<result.length;i++){
-	        if((res.test(result[i].objectId))||(res.test(result[i].Name))||(res.test(result[i].Address1))||(res.test(result[i].Address2))||(res.test(result[i].Street))||(res.test(result[i].Town))||(res.test(result[i].zipcode)))
+	        if((res.test(result[i].Name))||(res.test(result[i].Address1))||(res.test(result[i].Address2))||(res.test(result[i].Street))||(res.test(result[i].Town))||(res.test(result[i].zipcode)))
 			  {
 			locationtitle[i]=result[i].Name;
 			  locationlogo[i]=result[i].Logo;
@@ -161,6 +140,6 @@
 				  
 		  }
 		  $("#locations").append(listlocations);
-		
+		  event.stopPropagation();
 	});
           

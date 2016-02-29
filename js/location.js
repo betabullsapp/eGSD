@@ -29,7 +29,7 @@
 		var dItemQuery = new Parse.Query(dItem);
 		dItemQuery.limit(1000);
 		dItemQuery.include("StyleId")
-		dItemQuery.equalTo('ParentReferrence', id);
+		dItemQuery.equalTo('LocationId', id);
 		dItemQuery.find({
 			success: function(dRes){
 				localStorage.setItem('directory',JSON.stringify(dRes));
@@ -157,11 +157,13 @@
 	   ////local storage for styles details
 	    var sItem = Parse.Object.extend("Style");
 		  var sItemQuery = new Parse.Query(sItem);
+		  sItemQuery.limit(1000);
+		  sItemQuery.equalTo('LocationId', id);
 		  sItemQuery.find({
 		   success: function(sRes){
 			   localStorage.setItem('Style',JSON.stringify(sRes));
-			   var val=localStorage.getItem('Style');
-	              var result=JSON.parse(val);
+			  // var val=localStorage.getItem('Style');
+	             // var result=JSON.parse(val);
 				 // console.log(result);
 		   }
 		  });
