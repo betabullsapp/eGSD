@@ -26,23 +26,126 @@
 		   var tempQuery = new Parse.Query(tempItem);
 		   tempQuery.equalTo('objectId',id);
 			tempQuery.find().then(function(result){
-			  
-			 
 			   locationtitile=result[0].get("Name");
 			   var parentid=result[0].id;
 			
 				localStorage.setItem( 'parentid',JSON.stringify(parentid));
 				$("#location").append(locationtitile);
+				
 			   });
 		   
 	  }
 	  else{
 		 
+		 var locationimg,locationhotelimg;
 		 locationtitile=result[0].get("Name");
+		 locationLogo=result[0].get("Logo");
+		 locationHotelLogo=result[0].get("HotelLogo");
+		 locationMessage=result[0].get("Message");
+		 locationfooterimg=result[0].get("FooterImage")
+		  locationaddress1=result[0].get("Address1");
+		  locationaddress2=result[0].get("Address2");
+		  locationstreet=result[0].get("Street");
+		  locationtown=result[0].get("Town");
+		  locationzip=result[0].get("zipcode");
+		  locationgeo=result[0].get("Geopoints");
+		 
+		  //alert(locationgeo);
+		  console.log("gfdsgsdfg"+JSON.stringify(locationgeo));
 		id=result[0].get("Directories");
+		if(locationLogo!=undefined){
+					 locationimg=locationLogo._url;
+					
+				 }
+				 else{
+					  locationimg='display:none';
+				 }
+		if(locationHotelLogo!=undefined){
+					 locationhotelimg=locationHotelLogo._url;
+					
+				 }
+				 else{
+					  locationhotelimg='display:none';
+				 }
+		if(locationfooterimg!=undefined){
+					 footerimage=locationfooterimg._url;
+					
+				 }
+				 else{
+					  footerimage='display:none';
+				 }
+		
+		if(locationMessage==undefined){
+			          locationmsg='display:none';
+		          }	
+	   if(locationaddress1==undefined){
+					 locationadd1='display:none';
+		          }else{
+					  locationadd1="";
+				  }
+
+		if(locationaddress2==undefined){
+					 locationadd2="display:none";
+		          }else{
+					  locationadd2="";
+				  }
+				  
+        if(locationstreet==undefined){
+					 locationst="display:none";
+		          }
+				  else{
+					  locationst="";
+				  }
+				  	
+		if(locationtown==undefined){
+					 locationtwn="display:none";
+		          }
+				  else{
+					  locationtwn="";
+				  }
+		if(locationzip==undefined){
+					 locationzipcode="display:none";
+		          }else{
+					  locationzipcode="";
+				  }
+				  		  
+        if(locationgeo==undefined){
+					 locationgeopoints="display:none";
+					 locationlat="";
+					 locationlang="";
+					 
+		          }
+				  else{
+					  locationlat=locationgeo.latitude;
+					  locationlang=locationgeo.longitude;
+					  locationgeopoints="display:show;";
+				  }				 
+		 var dirlocationdetails="<p class='text-center' style='"+locationadd1+"'>"+locationaddress1+"</p>"+
+		 "<p class='text-center' style='"+locationadd2+"'>"+locationaddress2+"</p>"+
+		 "<p class='text-center' style='"+locationst+"'>"+locationstreet+"</p>"+
+		 "<p class='text-center' style='"+locationtwn+"'>"+locationtown+"</p>"+
+		 "<p class='text-center' style='"+locationzipcode+"'>"+locationzip+"</p>" 
+		
+		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"'>"+
+		 "<img class = 'center-block map-logo' src='./images/map.jpg'  alt = '' >"+
+		 "<p class='text-center'>directions</p><a>"
+		 
 		localStorage.setItem( 'parentid',JSON.stringify(id));
-	 
+		$('#locationlogo').attr("src",locationimg);
+		$('#locationhotellogo').attr("src",locationhotelimg)
+		$('#footerimage').attr("src",footerimage)
+		$('#locationmessage').append(locationMessage)
+		/* $('#locationaddress1').append(locationaddress1)
+		$('#locationaddress2').append(locationaddress2)
+		$('#locationstreet').append(locationstreet);
+		$('.locationtown').append(locationtown)
+		$('.locationtown').attr("style",locationtown1)
+		$('#locationzip').append(locationzip) */
+		$("#dirlocationdetails").append(dirlocationdetails);
+		$("#locationgeomap").append(geomap);
 		$("#location").append(locationtitile);
+		
+		
 	  }
 	 
 	
@@ -67,6 +170,7 @@
 				var TitleColor=new Array();
 				var TitleFont=new Array();
 				var dirlogoDis=new Array();
+				var  dirbutton=new Array();
 				var titleval;
 				var titletotval="";
 				var titletotval1="";
@@ -77,7 +181,9 @@
 				
 			
 	       for(var i=0;i<dRes.length;i++){
+			 
 			if(dRes[i].get("DirectoryID")==id){
+				  
 							dirtitle[i]=dRes[i].get("Title");
 							dircaption[i]=dRes[i].get("Caption");
 							dirid[i]=dRes[i].id;
@@ -87,13 +193,16 @@
 					
 				 }
 				 else{
-					  dirlogoDis[i]='display:none';
+					  dirlogoDis[i]='display:none;';
+					  dirbutton[i]='margin-left:43px!important';
 				 }
 				 if(dircaption[i]==undefined)
 				{
 				 titlecapDis='display:none';
 				}
-				var json={"title":dirtitle[i],
+				
+				
+				/* var json={"title":dirtitle[i],
 				          "caption":dircaption[i],
 				          "dirid":dirid[i],
 						  "dirlogo":dirurl[i],
@@ -101,22 +210,27 @@
 						  "titlefont": TitleFont[i],
 						  "dirlogodis": dirlogoDis[i]
 						  };
-				directory.push(json);
-
-					
+				directory.push(json); */
+					 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitile+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+					titletotval=titletotval+titleval;
+				
 				}
 				
 			}	
+			
+			
+				
+			$("#titledir").append(titletotval);
 				//console.log(directory[0]);
-				function compare(a,b) {
+				/* function compare(a,b) {
                        if (a.title < b.title)
                            return -1;
                        if (a.title > b.title)
                            return 1;
                             return 0;
                              }
-				directory.sort(compare);
-				for(var i=0;i<directory.length;i++){
+				directory.sort(compare); */
+				/* for(var i=0;i<directory.length;i++){
 				  
 					for(var j=i;j<directory.length;j++){
 						if(directory[i].title.charAt(0)==directory[j].title.charAt(0)){
@@ -147,7 +261,7 @@
 				var titlecomlete="<ul style='"+titledis+"'>"+titletotval+"</ul>"
 				
 				
-			    $("#title").append(titlecomlete);
+			    $("#title").append(titlecomlete); */
 				
 			}	
 		}); //end for directory items
@@ -194,10 +308,10 @@
   }
 
  //search box
-	$('#textbox').on("input",function(event){
-		 var textres = $(this).val();
+	$('#search').click(function(){
+		 var textres = $('#textbox').val();
 		 var res = new RegExp(textres,"i");
-		 $("#title").empty();
+		 $("#titledir").empty();
 		 var dirresult=localStorage.getItem('directory');
 		 var dRes=JSON.parse(dirresult);
 		        var dirid=new Array();
@@ -211,6 +325,7 @@
 				var TitleColor=new Array();
 				var TitleFont=new Array();
 				var dirlogoDis=new Array();
+				var dirbutton=new Array();
 				var titleval;
 				var titletotval="";
 				var titletotval1="";
@@ -240,6 +355,7 @@
 						 }
 						 else{
 							  dirlogoDis[i]='display:none';
+							  dirbutton[i]='margin-left:43px!important';
 						 }
 						if(styles[i]!=undefined)
 						{
@@ -250,9 +366,10 @@
 						if(dircaption[i]==undefined)
 						{
 						 titlecapDis='display:none';
+						 
 						}
 						//
-						var json={"title":dirtitle[i],
+						/* var json={"title":dirtitle[i],
 								  "caption":dircaption[i],
 								  "dirid":dirid[i],
 								  "dirlogo":dirurl[i],
@@ -260,13 +377,16 @@
 								  "titlefont": TitleFont[i],
 								  "dirlogodis": dirlogoDis[i]
 								  };
-						directory.push(json);
+						directory.push(json); */
+						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitile+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+					titletotval=titletotval+titleval;
 					  
 					}
 				 }
 			}
+			$("#titledir").append(titletotval);
 				//console.log(directory[0]);
-				function compare(a,b) {
+				/* function compare(a,b) {
                        if (a.title < b.title)
                            return -1;
                        if (a.title > b.title)
@@ -303,7 +423,7 @@
 				var titlecomlete="<ul style='"+titledis+"'>"+titletotval+"</ul>"
 				
 				
-			    $("#title").append(titlecomlete);
+			    $("#title").append(titlecomlete); */
 		  event.stopPropagation();
 	});
 //search for food	
