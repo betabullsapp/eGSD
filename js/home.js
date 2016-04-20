@@ -1,5 +1,6 @@
  var PARSE_APP = "FAbluZyN0hpXGpudGXrt9WOgvUQCxey3KEGALLle";
     var PARSE_JS = "diTLB99p5GHZED8SDzZ4ysNMMyXTXzJOcJi2Qww6";
+	
 	var locationtitle=new Array();
 	var locationlogo=new Array();
 	var locationaddress1=new Array();
@@ -24,7 +25,7 @@
          } 
 	   
 
-	   
+	  
 	   var query = location.search.substr(1);
 	   var idresult = {};
         query.split("&").forEach(function(part) {
@@ -35,8 +36,8 @@
 		
 		});	
 		  
+		  
 		  Parse.initialize(PARSE_APP,PARSE_JS);
-		 
 		  function UserLocation( position )
       {    
 	         latitude= position.coords.latitude;

@@ -1,5 +1,44 @@
+.dropbtn {
+    background-color: #f0f1f2;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #f0f1f2;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 2;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
 body{
-  background-color: gray;
+  background-color: darkred;
   overflow-x:hidden;
 }
 .searchbox{
@@ -8,15 +47,15 @@ body{
 /*centering the form element*/
     margin:0px auto;
 }
-input[type="search"]{
-    padding:8px 0px 8px 33px;
-    font-size:18px;
+input[type="text"]{
+    padding:8px 0px 0px 33px;
+    font-size:20px;
     color:#1f5350;
 /*removing boder from search box*/
     border: 1px solid;
 /*defining background image as a search symbol*/
-    background-image:url("../images/download.png");
-    background-repeat:no-repeat;
+  /*   background-image:url("../images/download.png");
+    background-repeat:no-repeat; */
 /*background-size*/
 -webkit-background-size:15px 15px;
    -moz-background-size:15px 15px;
@@ -25,21 +64,21 @@ input[type="search"]{
 /*positioning background image*/
     background-position:10px 8px;
 /*changing background color form white*/
-    background-color:#f1eccd;
-    border-radius: 25px;
+    background-color:#FFFFFF;
+    border-radius: 0px;
     width:77%;
 }
 /*now using placeholder property to change color of placholder text and making it consitent accross the browser by use of prefix*/
-input[type="search"]::-webkit-input-placeholder{
+input[type="text"]::-webkit-input-placeholder{
     color:#bfbaae;
 }
-input[type="search"]:-moz-placeholder { /* Firefox 18- */
+input[type="text"]:-moz-placeholder { /* Firefox 18- */
    color: #bfbaae;
 }
-input[type="search"]::-moz-placeholder {  /* Firefox 19+ */
+input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
    color: #bfbaae;
 }
-input[type="search"]:-ms-input-placeholder {  /* interner explorer*/
+input[type="text"]:-ms-input-placeholder {  /* interner explorer*/
    color: #bfbaae;
 }
 
@@ -83,7 +122,7 @@ a, a:visited,a:link,a:active, a:hover{
   background: #eeeeee;*/
   color: #3E3E3E;
   font-weight: bold;
-  padding: 5px 0;
+  padding: 5px 10px;
 
 }
 .home-navbar {
@@ -111,8 +150,8 @@ a, a:visited,a:link,a:active, a:hover{
     margin-top: 14px;
 }
 .headerBackground{
-  background-color: #CCCCCC;
-  color:#000;
+  background-color: darkred;
+  color:white;
   margin-bottom:0px;
   min-height:36px;
   font-size: 10px;
@@ -180,7 +219,7 @@ height: 230px !important;
 margin: 6px 0;
 }
 
-#logo {
+.logo {
 	margin-top:5px;
 }
 .titlemargin p{
@@ -203,17 +242,32 @@ margin-right:65px;
  height: 33px;
  margin: 0 10px 0 0;
 }
+.menudir{
+	margin-left:25px;
+}
+.dirbutton{
+	 width:93%;
+	 height: 32px;
+background: #b2b2b2;
+border-radius: 3px;
+border:none;
+margin-top:5px;
+}
+.footer{
+	height:30px;
+	margin-top:10px;
+}
 @media only screen and (min-width: 500px)
 {
-	input[type="search"]{
-    padding:8px 0px 8px 35px;
-    font-size:18px;
+	input[type="text"]{
+    padding:8px 0px 0px 35px;
+    font-size:20px;
     color:#1f5350;
 /*removing boder from search box*/
     border: 1px solid;
 /*defining background image as a search symbol*/
-    background-image:url("../images/download.png");
-    background-repeat:no-repeat;
+    /* background-image:url("../images/download.png");
+    background-repeat:no-repeat; */
 /*background-size*/
 -webkit-background-size:15px 15px;
    -moz-background-size:15px 15px;
@@ -222,8 +276,8 @@ margin-right:65px;
 /*positioning background image*/
     background-position:10px 8px;
 /*changing background color form white*/
-    background-color:#f1eccd;
-    border-radius: 25px;
+    background-color:#ffffff;
+    border-radius: 0px;
     width:94%;
 }
 .backIconHover a{
@@ -233,6 +287,34 @@ margin-right:65px;
   margin-top:14px;
 
 }
+.yourSearch{
+ /*  border: 1px solid #B3B3B3;
+  background: #eeeeee;*/
+  color: #3E3E3E;
+  font-weight: bold;
+  padding: 5px 10px;
+
+}
+
 
 
 }
+@media only screen and (max-width: 500px)
+{
+.menudir{
+	margin-left:25px;
+}
+.dirbutton{
+	 width:68%;
+}
+.map-logo{width:25%}	
+
+}
+.directory-logo { width:25%;}
+.map-logo{width:25%;}
+@media only screen and (max-width:320px)
+{
+	.directory-logo { width:50%;}
+	.map-logo{width:70%}
+}
+

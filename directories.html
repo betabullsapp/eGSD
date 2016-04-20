@@ -8,7 +8,7 @@
      
 	 <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script src="js/jquery-2.1.4.js"></script>
      <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
@@ -38,64 +38,115 @@
       </div>
     </div>
 	<div class="section navbar text-center home-navbar">
+		<div class="dropdown">
+					<button onclick="showdropdown()" class="dropbtn"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+					  <div id="myDropdown" class="dropdown-content">
+						<a href="#home"><span class="fa fa-shirtsinbulk"></span></a>
+						 <a href="#home"><span class="fa fa-taxi"></span></a>
+					 <a href="#home"><span class="fa fa-briefcase"></span></a>
+					 <a href="#home"><span class="fa fa-map-marker"></span></a>
+					  <a href="#home"><span class="fa fa-leanpub"></span></a>
+					
+					  </div>
+		</div>
 		<a href=""><i class="fa fa-home fa-2x fonticon iconcolor"></i></a>  
 		<!-- <i class="fa fa-bed fa-2x fonticon iconcolor"></i> -->
-		<i class="fa fa-shopping-cart fa-2x fonticon iconcolor" id="food"></i>
-		<i class="fa fa-briefcase fa-2x fonticon iconcolor" id="transport"></i>
-		<i class="fa fa-shirtsinbulk fa-2x fonticon iconcolor" id="banking"></i>
+		<i class="fa fa-cutlery  fa-2x fonticon iconcolor" id="food"></i>
+		<i class="fa fa-phone fa-2x fonticon iconcolor" id="transport"></i>
 		<a href="index.html"> <i class="fa fa-search fa-2x fonticon iconcolor"></i> </a>
 	</div> 
-   <div class="section picImageSection fixed-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 ">
-		   <img id="logo"
-            class="center-block img-responsive img-rounded margin">
-          <!--  <img src="images/flower.jpg"
-            class="center-block img-responsive img-rounded margin">-->
-          </div>
-        </div>
-      </div>
-    </div>
+ 
+
 	 <div class="section">
       <div>
         <div class="row">
           <div class="col-md-12 text-center yourSearch">
            
-              <input type="search" placeholder="Search items..." onfocus="this.placeholder = ''" id="textbox">
-            
-          </div>
-        </div>
+              <input type="text"  onfocus="this.placeholder = ''" id="textbox">
+			<a id="search" class="btn"> <i  class="glyphicon glyphicon-search" style="color:white;font-size:24px;margin-left: -10px" ></i></a>
+			 <!--  <img src="./images/download.png" > -->
+             
+           </div>
+	     </div>
       </div>
     </div>
-  <!--  <div class="section">
+	<div class="section picImageSection fixed-top">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 text-center strongText">
-            <h2><strong>Hotel Guest Services Directory</strong></h2>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+		   
+           <img class="center-block img-rounded margin directory-logo" id="locationhotellogo">
+          </div>
+        </div>
+      </div>
+    </div
+	 <div class="section picImageSection fixed-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+		     <img class="logo center-block img-rounded margin directory-logo" id="locationlogo">
           </div>
         </div>
       </div>
     </div>
-    <div class="section" style="display:none;">
-      <div>
+	<!-- address mapping -->
+	<div class="section">
+    <div class = "row" style="margin-top:10px;" >
+    <div class = "col-md-6 col-sm-6 col-xs-6" id="dirlocationdetails" >
+        
+			<!-- <p class="text-center" id="locationaddress1"></p>
+			<p class="text-center" id="locationaddress2"></p>
+			<p class="text-center" id="locationstreet"></p>
+			<p class="text-center" id="locationtown"></p>
+			<p class="text-center" id="locationzip"></p> -->
+			
+            
+    </div>
+	<div class = "col-md-6 col-sm-6 col-xs-6" id="locationgeomap">
+
+<!--             <a onclick="myNavFunc(this.id,this.lang)" id="22" lang="55"><img class = "center-block" src="./images/map.jpg" style="width:25%;" alt = "" > <p class="text-center">directions</p><a> -->
+
+	</div>
+	
+    </div>
+	</div>
+	<!-- welcome message -->
+	<div class="section">
+      <div class="container">
         <div class="row">
-          <div class="col-md-12 text-center yourSearch">
-            <form class="searchbox" action="">
-              <input type="search" placeholder="Filter items...">
-            </form>
+          <div class="col-md-12 text-center " id="locationmessage">
           </div>
         </div>
       </div>
-    </div>-->
+    </div>
+	
+	<!--  list of dir items -->
+	<div class="section" id="titledir">
+	
+     </div>
+
+        <!-- <div class="row">
+	
+			<span class="menudir"><img  src="./images/Logo1.png" class="dirlogo"></span>
+			<span><button class="dirbutton">hello</button></span>
+        </div>
+		<div class="row">
+	
+			<span class="menudir"><img  src="./images/Logo1.png" class="dirlogo"></span>
+			<span><button class="dirbutton">hello</button></span>
+			
+        </div> -->
+
+    
+  
 	
 	
-	<div style="height:10px;"></div>
+	<!-- <div style="height:10px;"></div>
     <div class="section directories">
       <div>
         <div class="row">
-          <div class="col-md-12 listHoverEffects" id="title">
-			
+          <div class="col-md-12 listHoverEffects " >
+			 -->
            <!-- <ul >
               <li class="mainStyleList">A</li>
               <a href="atm.html"><li class="normalListStyle" id="atm" >ATM<i class="fa fa-chevron-right pull-right"></i></li></a>
@@ -153,19 +204,55 @@
 
             </ul>-->
             
-          </div>
+          <!-- </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
+	<div ><center><img id="footerimage" class="footer"></center></div>
+		<script>
+		function myNavFunc(lat,lang){
+		allplatforms="http://maps.google.com/maps?q="+lat+","+lang+""
+		iphone="maps://maps.google.com/maps?q="+lat+","+lang+""
+		
+			// If it's an iPhone..
+			if( (navigator.platform.indexOf("iPhone") != -1) 
+				|| (navigator.platform.indexOf("iPod") != -1)
+				|| (navigator.platform.indexOf("iPad") != -1))
+				 window.open(iphone);
+			else
+				 window.open(allplatforms);
+		}
+		</script>
+		<script>
+			/* When the user clicks on the button, 
+			toggle between hiding and showing the dropdown content */
+			function showdropdown() {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
 
+			// Close the dropdown if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+				  var openDropdown = dropdowns[i];
+				  if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+				  }
+				}
+			  }
+			}
+			</script>
 
 	<!--<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
 	<script src="js/location.js"></script>
    
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        
-     <script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+         <script src="js/parse.js"></script>
+     <script src="https://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
 	 <br>
 </body>
 </html>
