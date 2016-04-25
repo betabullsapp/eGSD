@@ -37,7 +37,7 @@
 	  }
 	  else{
 		 
-		 var locationimg,locationhotelimg;
+		 var locationimg,locationhotelimg,loctionBackground,locTextFont,locationMsg,locFooterBackground,footerimg;
 		 locationtitile=result[0].get("Name");
 		 locationLogo=result[0].get("Logo");
 		 locationHotelLogo=result[0].get("HotelLogo");
@@ -49,35 +49,33 @@
 		  locationtown=result[0].get("Town");
 		  locationzip=result[0].get("zipcode");
 		  locationgeo=result[0].get("Geopoints");
-		 
-		  //alert(locationgeo);
-		  console.log("gfdsgsdfg"+JSON.stringify(locationgeo));
+		  locationstyle=result[0].get("StyleId")
+		  locationFrontDesk=result[0].get("FrontDesk")
+		  locationBellDesk=result[0].get("BellDesk")
+		  locationMaidDesk=result[0].get("MaidDesk")
+		  locationLocalAttractions=result[0].get("LocalAttractions");
+		  locationHotelDirectory=result[0].get("HotelDirectory")
+		  var loationStyleid=locationstyle.id 
+		  
 		id=result[0].get("Directories");
 		if(locationLogo!=undefined){
 					 locationimg=locationLogo._url;
-					
+						$('#locationlogo').attr("src",locationimg);
 				 }
 				 else{
 					  locationimg='display:none';
+					  	$('#locationlogo').attr("style",locationimg);
 				 }
 		if(locationHotelLogo!=undefined){
 					 locationhotelimg=locationHotelLogo._url;
-					
+						$('#locationhotellogo').attr("src",locationhotelimg)
 				 }
 				 else{
 					  locationhotelimg='display:none';
-				 }
-		if(locationfooterimg!=undefined){
-					 footerimage=locationfooterimg._url;
-					
-				 }
-				 else{
-					  footerimage='display:none';
+					  	$('#locationhotellogo').attr("style",locationhotelimg)
 				 }
 		
-		if(locationMessage==undefined){
-			          locationmsg='display:none';
-		          }	
+		
 	   if(locationaddress1==undefined){
 					 locationadd1='display:none';
 		          }else{
@@ -119,33 +117,78 @@
 					  locationlat=locationgeo.latitude;
 					  locationlang=locationgeo.longitude;
 					  locationgeopoints="display:show;";
-				  }				 
-		 var dirlocationdetails="<p class='text-center' style='"+locationadd1+"'>"+locationaddress1+"</p>"+
-		 "<p class='text-center' style='"+locationadd2+"'>"+locationaddress2+"</p>"+
-		 "<p class='text-center' style='"+locationst+"'>"+locationstreet+"</p>"+
-		 "<p class='text-center' style='"+locationtwn+"'>"+locationtown+"</p>"+
-		 "<p class='text-center' style='"+locationzipcode+"'>"+locationzip+"</p>" 
+				  }	
+			if(loationStyleid!=undefined){
+			   var locStyle = Parse.Object.extend("Style");
+			   var StyleQuery = new Parse.Query(locStyle);
+			   StyleQuery.equalTo('objectId',loationStyleid);
+			   StyleQuery.find().then(function(result){
+				   locBackground=result[0].get("LocationBackground")
+				    locTextFont=result[0].get("LocationTextFont")
+					locTextColor=result[0].get("LocationTextColor")
+					locTextBackground=result[0].get("LocationTextBackground");
+					locFooterBackground=result[0].get("LocationFooterBackground")
+					locAddressFont=result[0].get("LocationAddressFont");
+					locAddressFontColor=result[0].get("LocationAddressFontColor")
+					
+				   if(locBackground!=undefined){
+					   loctionBackground="background-color:#"+locBackground;
+					
+					   $("#locationbackground").attr("style",loctionBackground)
+				   }
+				   		 if(locationMessage==undefined){
+							locationmsg='display:none';
+							$('#locationmessage').attr("style",locationmsg)
+							}else{
+								locationMsg="<div class='section'><div class='row' style='background-color:"+locTextBackground+"'><div class='col-md-12 text-center' style='font-size:"+
+						      locTextFont+";color:"+locTextColor+";'>"+locationMessage+"</div></div></div>"
+							  $('#locationmessage').append(locationMsg)
+							}	
+							if(locationfooterimg!=undefined){
+									 footerimage=locationfooterimg._url;
+									footerimg="<div style='background:"+locFooterBackground+";margin-top:5px;' ><center><img class='footer' src='"+footerimage+"'></center></div>"	
+									  $('#footerimage').append(footerimg)
+								 }
+								 else{
+									 
+									  footerimage='display:none';
+									    $('#footerimage').attr("styles",footerimage)
+								 }
+						 
+						 
+					   
+						 var dirlocationdetails="<address class='text-center' style='color:"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
+						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br>"+
+						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br>"+
+						 "<text style='"+locationst+"'>"+locationstreet+"</text><br>"+
+						 "<text style='"+locationtwn+"'>"+locationtown+"</text><br>"+
+						 "<text style='"+locationzipcode+"'>"+locationzip+"</text></address>"
+						 	$("#dirlocationdetails").append(dirlocationdetails);
+		       });
+			   
+		  }
+        
+		  
 		
 		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"'>"+
 		 "<img class = 'center-block map-logo' src='./images/map.jpg'  alt = '' >"+
 		 "<p class='text-center'>directions</p><a>"
-		 
+		
 		localStorage.setItem( 'parentid',JSON.stringify(id));
-		$('#locationlogo').attr("src",locationimg);
-		$('#locationhotellogo').attr("src",locationhotelimg)
-		$('#footerimage').attr("src",footerimage)
-		$('#locationmessage').append(locationMessage)
-		/* $('#locationaddress1').append(locationaddress1)
-		$('#locationaddress2').append(locationaddress2)
-		$('#locationstreet').append(locationstreet);
-		$('.locationtown').append(locationtown)
-		$('.locationtown').attr("style",locationtown1)
-		$('#locationzip').append(locationzip) */
-		$("#dirlocationdetails").append(dirlocationdetails);
+	
+	
+		
+		
+		
+		
 		$("#locationgeomap").append(geomap);
 		$("#location").append(locationtitile);
 		
-		
+		$("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
+		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
+		$("#locationMaidDesk").attr("href","tel:"+locationMaidDesk);
+		$("#locationLocalAttractions").attr("href","http://"+locationLocalAttractions)
+		$("#locationHotelDirectory").attr("href","http://"+locationHotelDirectory)
 	  }
 	 
 	

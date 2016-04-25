@@ -14,7 +14,7 @@
      <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 
 </head>
-<body onload="myFunction()">
+<body onload="myFunction()" id="locationbackground">
 <!--<div class="section navbar-top headerbg">
       <div class="container">
         <div class="row">
@@ -37,23 +37,23 @@
         </div>
       </div>
     </div>
-	<div class="section navbar text-center home-navbar">
-		<div class="dropdown">
-					<button onclick="showdropdown()" class="dropbtn"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+	<div class="section navbar text-center home-navbar menuicon">
+		<div class="dropdown ">
+					<button onclick="showdropdown()" class="dropbtn"><span class="glyphicon glyphicon-menu-hamburger dropbtn"></span></button>
 					  <div id="myDropdown" class="dropdown-content">
-						<a href="#home"><span class="fa fa-shirtsinbulk"></span></a>
-						 <a href="#home"><span class="fa fa-taxi"></span></a>
-					 <a href="#home"><span class="fa fa-briefcase"></span></a>
-					 <a href="#home"><span class="fa fa-map-marker"></span></a>
-					  <a href="#home"><span class="fa fa-leanpub"></span></a>
+						<a id="locationMaidDesk"><span class="fa fa-shirtsinbulk" title="Maid Service"></span></a>
+						 <a href="#home"><span class="fa fa-taxi" title="Taxi"></span></a>
+					 <a id="locationBellDesk"><span class="fa fa-briefcase" title="Bellman/Baggage"></span></a>
+					 <a id="locationLocalAttractions"><span class="fa fa-map-marker" title="Local Attractions"></span></a>
+					  <a id="locationHotelDirectory"><span class="fa fa-leanpub" title="Hotel Directory"></span></a>
 					
 					  </div>
 		</div>
-		<a href=""><i class="fa fa-home fa-2x fonticon iconcolor"></i></a>  
+		<a href=""><i class="fa fa-home fa-2x fonticon iconcolor" title="Home"></i></a>  
 		<!-- <i class="fa fa-bed fa-2x fonticon iconcolor"></i> -->
-		<i class="fa fa-cutlery  fa-2x fonticon iconcolor" id="food"></i>
-		<i class="fa fa-phone fa-2x fonticon iconcolor" id="transport"></i>
-		<a href="index.html"> <i class="fa fa-search fa-2x fonticon iconcolor"></i> </a>
+		<a  id="locationFrontDesk"><i class="fa fa-cutlery  fa-2x fonticon iconcolor" title="Service/Frontdesk"></i></a>
+		<i class="fa fa-phone fa-2x fonticon iconcolor" id="transport" title="Housephone"></i>
+		<a href="index.html"> <i class="fa fa-sign-out fa-2x fonticon iconcolor" ></i> </a>
 	</div> 
  
 
@@ -93,13 +93,7 @@
 	<div class="section">
     <div class = "row" style="margin-top:10px;" >
     <div class = "col-md-6 col-sm-6 col-xs-6" id="dirlocationdetails" >
-        
-			<!-- <p class="text-center" id="locationaddress1"></p>
-			<p class="text-center" id="locationaddress2"></p>
-			<p class="text-center" id="locationstreet"></p>
-			<p class="text-center" id="locationtown"></p>
-			<p class="text-center" id="locationzip"></p> -->
-			
+       
             
     </div>
 	<div class = "col-md-6 col-sm-6 col-xs-6" id="locationgeomap">
@@ -111,20 +105,26 @@
     </div>
 	</div>
 	<!-- welcome message -->
-	<div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center " id="locationmessage">
+	<div class="section" id="locationmessage">
+     <!--  <div class="container">
+        <div class="row" id="locationmessage">
+          <div class="col-md-12 text-center " style="font-color:black" id="locationmessage">
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 	
 	<!--  list of dir items -->
 	<div class="section" id="titledir">
 	
      </div>
-
+	 
+	<!-- foot image -->
+	<div class="section"  id="footerimage">
+	<!-- <div style="background:white;" >
+	<center><img id="footerimage" class="footer"></center>
+	</div> -->
+     </div>
         <!-- <div class="row">
 	
 			<span class="menudir"><img  src="./images/Logo1.png" class="dirlogo"></span>
@@ -209,7 +209,6 @@
       </div>
     </div> -->
 
-	<div ><center><img id="footerimage" class="footer"></center></div>
 		<script>
 		function myNavFunc(lat,lang){
 		allplatforms="http://maps.google.com/maps?q="+lat+","+lang+""
