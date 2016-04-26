@@ -19,6 +19,7 @@
    var locQuery = new Parse.Query(locItem);
    locQuery.equalTo('objectId',id);
    locQuery.find().then(function(result){
+	   localStorage.setItem( 'Hotel',JSON.stringify(result));
 	  if(result[0]==undefined)
 	  {
 
@@ -53,6 +54,7 @@
 		  locationFrontDesk=result[0].get("FrontDesk")
 		  locationBellDesk=result[0].get("BellDesk")
 		  locationMaidDesk=result[0].get("MaidDesk")
+		  locationEmergency=result[0].get("Emergency")
 		  locationLocalAttractions=result[0].get("LocalAttractions");
 		  locationHotelDirectory=result[0].get("HotelDirectory")
 		  var loationStyleid=locationstyle.id 
@@ -132,8 +134,8 @@
 					locAddressFontColor=result[0].get("LocationAddressFontColor")
 					
 				   if(locBackground!=undefined){
-					   loctionBackground="background-color:#"+locBackground;
-					
+					   loctionBackground="background-color:"+locBackground;
+						 localStorage.setItem( 'Hotelbackground',JSON.stringify(loctionBackground));
 					   $("#locationbackground").attr("style",loctionBackground)
 				   }
 				   		 if(locationMessage==undefined){
@@ -147,6 +149,7 @@
 							if(locationfooterimg!=undefined){
 									 footerimage=locationfooterimg._url;
 									footerimg="<div style='background:"+locFooterBackground+";margin-top:5px;' ><center><img class='footer' src='"+footerimage+"'></center></div>"	
+									localStorage.setItem( 'Hotelfooter',JSON.stringify(footerimg));
 									  $('#footerimage').append(footerimg)
 								 }
 								 else{
@@ -187,6 +190,7 @@
 		$("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
 		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
 		$("#locationMaidDesk").attr("href","tel:"+locationMaidDesk);
+		$("#locationEmergency").attr("href","tel:"+locationEmergency);
 		$("#locationLocalAttractions").attr("href","http://"+locationLocalAttractions)
 		$("#locationHotelDirectory").attr("href","http://"+locationHotelDirectory)
 	  }
@@ -472,13 +476,13 @@
 //search for food	
  $("#food").click(function(){
     //alert("The paragraph was clicked.");
-	var textfood = "food"
+	var textfood = "Food and Beverage"
 	 var textdining = "dining";
 	 var textrestaurant ="restaurant";
 		 var resdining = new RegExp(textdining,"i");
 		 var resfood = new RegExp(textfood,"i");
 		 var resrestaurant = new RegExp(textrestaurant,"i");
-		 $("#title").empty();
+		 $("#titledir").empty();
 		 var dirresult=localStorage.getItem('directory');
 		 var dRes=JSON.parse(dirresult);
 		        var dirid=new Array();
@@ -492,6 +496,7 @@
 				var TitleColor=new Array();
 				var TitleFont=new Array();
 				var dirlogoDis=new Array();
+				var dirbutton=new Array();
 				var titleval;
 				var titletotval="";
 				var titletotval1="";
@@ -521,6 +526,7 @@
 						 }
 						 else{
 							  dirlogoDis[i]='display:none';
+							  dirbutton[i]='margin-left:43px!important';
 						 }
 						if(styles[i]!=undefined)
 						{
@@ -532,8 +538,10 @@
 						{
 						 titlecapDis='display:none';
 						}
+						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitile+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+					    titletotval=titletotval+titleval;
 						//
-						var json={"title":dirtitle[i],
+						/* var json={"title":dirtitle[i],
 								  "caption":dircaption[i],
 								  "dirid":dirid[i],
 								  "dirlogo":dirurl[i],
@@ -541,13 +549,13 @@
 								  "titlefont": TitleFont[i],
 								  "dirlogodis": dirlogoDis[i]
 								  };
-						directory.push(json);
+						directory.push(json); */
 					  // console.log(json);
 					}
 				 }
 			}
 				//console.log(directory[0]);
-				function compare(a,b) {
+				/* function compare(a,b) {
                        if (a.title < b.title)
                            return -1;
                        if (a.title > b.title)
@@ -582,9 +590,9 @@
 				}
 				
 				var titlecomlete="<ul style='"+titledis+"'>"+titletotval+"</ul>"
+				 */
 				
-				
-			    $("#title").append(titlecomlete);
+			    $("#titledir").append(titletotval);
 		  event.stopPropagation();
 });
 
