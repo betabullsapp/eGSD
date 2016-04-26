@@ -21,16 +21,7 @@ function myDescription(){
 		 var Hotelbackground=localStorage.getItem('Hotelbackground');
 		var hbgRes=JSON.parse(Hotelbackground);
 		 $("#locationbackground").attr("style",hbgRes)
-		 var Hotelfooter=localStorage.getItem('Hotelfooter');
-		 var hfooter=JSON.parse(Hotelfooter);
-
-		 if(hfooter!=undefined){
-			  $('#footerimage').append(hfooter)
-		 }
-		 else{
-			 hfooter='display:none';
-			 $('#footerimage').attr("styles",hfooter)
-		 }
+		 
 		var hotelresult=localStorage.getItem('Hotel');
 		var hRes=JSON.parse(hotelresult);
 		 locationfooterimg=hRes[0].FooterImage
@@ -265,11 +256,24 @@ function myDescription(){
 					titletotval=titletotval+titleval;
 			  }
 			  
+			 
 		  }
-		  $("#titledir").append(titletotval);
-	
+		    $("#titledir").append(titletotval);
+			 if(i<=dRes.length){
+					var Hotelfooter=localStorage.getItem('Hotelfooter');
+					 var hfooter=JSON.parse(Hotelfooter);
+
+					 if(hfooter!=undefined){
+						  $('#footerimage').append(hfooter)
+					 }
+					 else{
+						 hfooter='display:none';
+						 $('#footerimage').attr("styles",hfooter)
+					 }
+			  }
 		var url="directories.html?id="+dirParentid;	
 		 $("#parentid").attr("href",url);
+		 
 }
 
 //search box
