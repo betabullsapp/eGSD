@@ -142,8 +142,8 @@
 							locationmsg='display:none';
 							$('#locationmessage').attr("style",locationmsg)
 							}else{
-								locationMsg="<div class='section'><div class='row' style='background-color:"+locTextBackground+"'><div class='col-md-12 text-center' style='font-size:"+
-						      locTextFont+";color:"+locTextColor+";'>"+locationMessage+"</div></div></div>"
+								locationMsg="<div class='section'style='background-color:"+locTextBackground+"'><div class='container'><div class='row' ><div class='col-md-12 text-center' style='font-size:"+
+						      locTextFont+";color:"+locTextColor+";'>"+locationMessage+"</div></div></div></div>"
 							  $('#locationmessage').append(locationMsg)
 							}	
 							if(locationfooterimg!=undefined){
@@ -160,11 +160,10 @@
 						 
 						 
 					   
-						 var dirlocationdetails="<address class='text-center' style='color:"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
+						 var dirlocationdetails="<address class='text-left addPadding' style='color:"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
 						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br>"+
 						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br>"+
-						 "<text style='"+locationst+"'>"+locationstreet+"</text><br>"+
-						 "<text style='"+locationtwn+"'>"+locationtown+"</text><br>"+
+						 "<text style='"+locationst+"'>"+locationstreet+"<text style='"+locationtwn+"'>,"+locationtown+"</text></text><br>"+
 						 "<text style='"+locationzipcode+"'>"+locationzip+"</text></address>"
 						 	$("#dirlocationdetails").append(dirlocationdetails);
 		       });
@@ -173,9 +172,9 @@
         
 		  
 		
-		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"'>"+
-		 "<img class = 'center-block map-logo' src='./images/map.jpg'  alt = '' >"+
-		 "<p class='text-center'>directions</p><a>"
+		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"' class='mapPadding'>"+
+		 "<img class = 'map-logo' src='./images/map.jpg'  alt = '' >"+
+		 "<p  class='mapPadding' style='margin-left:9%'>directions</p><a>"
 		
 		localStorage.setItem( 'parentid',JSON.stringify(id));
 	

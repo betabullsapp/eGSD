@@ -322,10 +322,23 @@ margin-top:5px;
 }
 .directory-logo { width:25%;}
 .map-logo{width:25%;}
+.addPadding{
+	padding: 0px 0px 0px 260px !important;
+}
+.mapPadding{
+			padding: 0px 0px 0px 165px !important;	
+			}
 @media only screen and (max-width:320px)
 {
 	.directory-logo { width:60%;
 	border-radius:0px;}
-	.map-logo{width:70%}
+	.map-logo{width:75%}
+	.addPadding{
+	padding: 0px 0px 0px 30px !important;
+	
+}
+		.mapPadding{
+			padding: 0px 0px 0px 0px !important;	
+			}
 }
 
