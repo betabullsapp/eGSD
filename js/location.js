@@ -163,7 +163,7 @@
 						 var dirlocationdetails="<address class='text-left addPadding' style='color:"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
 						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br>"+
 						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br>"+
-						 "<text style='"+locationst+"'>"+locationstreet+"<text style='"+locationtwn+"'>,"+locationtown+"</text></text><br>"+
+						 "<text style='"+locationst+"'>"+locationstreet+"<text style='"+locationtwn+"'>, "+locationtown+"</text></text><br>"+
 						 "<text style='"+locationzipcode+"'>"+locationzip+"</text></address>"
 						 	$("#dirlocationdetails").append(dirlocationdetails);
 		       });
