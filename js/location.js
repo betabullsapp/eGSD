@@ -31,7 +31,7 @@
 			   var parentid=result[0].id;
 			
 				localStorage.setItem( 'parentid',JSON.stringify(parentid));
-				$("#location").append(locationtitile);
+				$("#location").html(locationtitile);
 				
 			   });
 		   
@@ -42,14 +42,16 @@
 		 locationtitile=result[0].get("Name");
 		 locationLogo=result[0].get("Logo");
 		 locationHotelLogo=result[0].get("HotelLogo");
-		 locationMessage=result[0].get("Message");
+		 locationMessage=result[0].get("description");
 		 locationfooterimg=result[0].get("FooterImage")
+		 locationfooterText=result[0].get("footerText");
 		  locationaddress1=result[0].get("Address1");
 		  locationaddress2=result[0].get("Address2");
 		  locationstreet=result[0].get("Street");
 		  locationtown=result[0].get("Town");
 		  locationzip=result[0].get("zipcode");
 		  locationgeo=result[0].get("Geopoints");
+		  locationhtml=result[0].get("HtmlContent")
 		  locationstyle=result[0].get("StyleId")
 		  locationFrontDesk=result[0].get("FrontDesk")
 		  locationBellDesk=result[0].get("BellDesk")
@@ -129,12 +131,16 @@
 				    locTextFont=result[0].get("LocationTextFont")
 					locTextColor=result[0].get("LocationTextColor")
 					locTextBackground=result[0].get("LocationTextBackground");
+					locHtmlColor=result[0].get("HtmlContentColor")
+					locHtmlFont=result[0].get("HtmlContentFont")
 					locFooterBackground=result[0].get("LocationFooterBackground")
 					locAddressFont=result[0].get("LocationAddressFont");
 					locAddressFontColor=result[0].get("LocationAddressFontColor")
+					locFooterTextFont=result[0].get("FooterTextFont");
+					locFooterTextColor=result[0].get("FooterTextColor");
 					
 				   if(locBackground!=undefined){
-					   loctionBackground="background-color:"+locBackground;
+					   loctionBackground="background-color:#"+locBackground;
 						 localStorage.setItem( 'Hotelbackground',JSON.stringify(loctionBackground));
 					   $("#locationbackground").attr("style",loctionBackground)
 				   }
@@ -142,15 +148,24 @@
 							locationmsg='display:none';
 							$('#locationmessage').attr("style",locationmsg)
 							}else{
-								locationMsg="<div class='section'style='background-color:"+locTextBackground+"'><div class='container'><div class='row' ><div class='col-md-12 text-center' style='font-size:"+
-						      locTextFont+";color:"+locTextColor+";'>"+locationMessage+"</div></div></div></div>"
-							  $('#locationmessage').append(locationMsg)
-							}	
+								locationMsg="<div class='section'style='background-color:#"+locTextBackground+"'><div class='container'><div class='row' ><div class='col-md-12 text-center' style='font-size:"+
+						      locTextFont+";color:#"+locTextColor+";'>"+locationMessage+"</div></div></div></div>"
+							  $('#locationmessage').html(locationMsg)
+							}
+                            if(locationhtml==undefined){
+							locationhtml='display:none';
+							$('#locationhtml').attr("style",locationhtml)
+							}else{
+								locationHtml="<div class='section'><div class='container'><div class='row' ><div class='col-md-12 text-center' style='font-size:"+
+						      locHtmlFont+";color:#"+locHtmlColor+";'>"+locationhtml+"</div></div></div></div>"
+							  $('#locationhtml').html(locationHtml)
+							}
+                            										
 							if(locationfooterimg!=undefined){
 									 footerimage=locationfooterimg._url;
-									footerimg="<div style='background:"+locFooterBackground+";margin-top:5px;' ><center><img class='footer' src='"+footerimage+"'></center></div>"	
+									footerimg="<div style='background-color:#"+locFooterBackground+";margin-top:5px;' ><center><img class='footer' src='"+footerimage+"'></center></div>"
 									localStorage.setItem( 'Hotelfooter',JSON.stringify(footerimg));
-									  $('#footerimage').append(footerimg)
+									  $('#footerimage').html(footerimg)
 								 }
 								 else{
 									 
@@ -158,14 +173,24 @@
 									    $('#footerimage').attr("styles",footerimage)
 								 }
 						 
-						 
+						   if(locationfooterText!=undefined){
+							   
+							   footerText="<center><text style='font-size:"+
+						      locFooterTextFont+";color:#"+locFooterTextColor+";'>"+locationfooterText+"</text></center>"	
+									localStorage.setItem( 'HotelfooterText',JSON.stringify(footerText));
+									  $('#footerText').html(footerText)
+							   
+						   }else{
+							   footerText='display:none';
+							   $('#footerText').attr("styles",footerText)
+						   }
 					   
-						 var dirlocationdetails="<address class='text-left addPadding' style='color:"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
+						 var dirlocationdetails="<address class='text-left addPadding' style='color:#"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
 						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br>"+
 						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br>"+
 						 "<text style='"+locationst+"'>"+locationstreet+"<text style='"+locationtwn+"'>, "+locationtown+"</text></text><br>"+
 						 "<text style='"+locationzipcode+"'>"+locationzip+"</text></address>"
-						 	$("#dirlocationdetails").append(dirlocationdetails);
+						 	$("#dirlocationdetails").html(dirlocationdetails);
 		       });
 			   
 		  }
@@ -183,8 +208,8 @@
 		
 		
 		
-		$("#locationgeomap").append(geomap);
-		$("#location").append(locationtitile);
+		$("#locationgeomap").html(geomap);
+		$("#location").html(locationtitile);
 		
 		$("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
 		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
@@ -266,7 +291,7 @@
 			
 			
 				
-			$("#titledir").append(titletotval);
+			$("#titledir").html(titletotval);
 				//console.log(directory[0]);
 				/* function compare(a,b) {
                        if (a.title < b.title)
@@ -430,7 +455,7 @@
 					}
 				 }
 			}
-			$("#titledir").append(titletotval);
+			$("#titledir").text(titletotval);
 				//console.log(directory[0]);
 				/* function compare(a,b) {
                        if (a.title < b.title)
@@ -591,7 +616,7 @@
 				var titlecomlete="<ul style='"+titledis+"'>"+titletotval+"</ul>"
 				 */
 				
-			    $("#titledir").append(titletotval);
+			    $("#titledir").html(titletotval);
 		  event.stopPropagation();
 });
 
@@ -710,7 +735,7 @@
 				var titlecomlete="<ul style='"+titledis+"'>"+titletotval+"</ul>"
 				
 				
-			    $("#title").append(titlecomlete);
+			    $("#title").html(titlecomlete);
 		  event.stopPropagation();
 });
  //search for transport 
@@ -827,7 +852,7 @@
 				var titlecomlete="<ul style='"+titledis+"'>"+titletotval+"</ul>"
 				
 				
-			    $("#title").append(titlecomlete);
+			    $("#title").html(titlecomlete);
 		  event.stopPropagation();
 });
 	

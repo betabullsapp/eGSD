@@ -32,7 +32,7 @@ function myDescription(){
 		  locationLocalAttractions=hRes[0].LocalAttractions;
 		  locationHotelDirectory=hRes[0].HotelDirectory
 		
-		$("#location").append(location);
+		$("#location").html(location);
 		$("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
 		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
 		$("#locationMaidDesk").attr("href","tel:"+locationMaidDesk);
@@ -132,26 +132,26 @@ function myDescription(){
 					{dirpicture='';pictureDis='display:none';}
 					if((diremail==undefined)||(diremail==''))
 					{diremail='';emailDis='display:none;';}
-				   var titlecaption="<div class='section' style='background:"+titlebackground+";' >"+
+				   var titlecaption="<div class='section' style='background:#"+titlebackground+";' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' style='color:#"+titlecolor+";font-size:"+titlefont+"' >"+
 				   ""+dirtitle+"<br>"+dircaption+"</div></div></div></div>"
-				   $('#titlecaption').append(titlecaption);
-				   var image="<div class='section' style='background:"+imagebackground+";' >"+
+				   $('#titlecaption').html(titlecaption);
+				   var image="<div class='section' style='background:#"+imagebackground+";' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' >"+
 				   "<center><img style='"+pictureDis+"' src='"+pic+"'class='center-block img-rounded margin directory-logo' ></center></div></div></div>"
-				   $("#titleimage").append(image);
-				   var timings="<div class='section' style='background:"+timingbackground+";"+dirtimingnone+"' >"+
+				   $("#titleimage").html(image);
+				   var timings="<div class='section' style='background:#"+timingbackground+";"+dirtimingnone+"' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' style='color:#"+timingscolor+";font-size:"+timingsfont+";margin-top:10px;' >"+
 				   ""+dirtiming+"</div></div></div></div>"
-				   $('#timings').append(timings);
-				   var description="<div class='section' style='background:"+descriptionBackground+";"+dirtimingnone+"' >"+
+				   $('#timings').html(timings);
+				   var description="<div class='section' style='background:#"+descriptionBackground+";"+dirtimingnone+"' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' style='color:#"+descriptioncolor+";font-size:"+descrptionfont+";margin-top:10px;' >"+
 				   ""+dirdesc+"</div></div></div></div>"
-				   $('#description').append(description);
+				   $('#description').html(description);
 				   
 				   var val=localStorage.getItem('phones');
 	         var pRes=JSON.parse(val);
@@ -170,21 +170,21 @@ function myDescription(){
 								
 								
 								if(phonetype[k]=="phone"){
-									 phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='tel:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
+									 phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='tel:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:#"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
 								}
 								if(phonetype[k]=="email"){
-									 phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='mailto:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
+									 phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='mailto:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:#"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
 								}
 								if(phonetype[k]=="website"){
-									phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_blank' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='http://"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
+									phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_blank' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='http://"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:#"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
 								}
 							phonetot=phonetot+phone;	  	
 						}
 						
 					}
 			  }	 
-				 phonecomplete="<div style='background:"+phonesbackground+"'>"+phonetot+"</div>"
-			   $("#phone").append(phonecomplete);
+				 phonecomplete="<div style='background:#"+phonesbackground+"'>"+phonetot+"</div>"
+			   $("#phone").html(phonecomplete);
 			  
 			var val=localStorage.getItem('menu');
 	        var mRes=JSON.parse(val);
@@ -216,12 +216,12 @@ function myDescription(){
 							  }
 						  }
 						 
-						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+descrptionfont[l]+"px !important;color:"+descriptioncolor[l]+" !important;padding-right:60px;padding-bottom:30px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+"px !important;color:"+pricecolor[l]+" !important;padding-bottom:30px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
+						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+descrptionfont[l]+"px !important;color:#"+descriptioncolor[l]+" !important;padding-right:60px;padding-bottom:30px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+"px !important;color:#"+pricecolor[l]+" !important;padding-bottom:30px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
 						 totalmenu=totalmenu+menu;
 					}
 				}
-			  fullmenu="<div style='background:"+pricebackground+"'><center><table  >"+totalmenu+"</table></center></div>"
-			$("#menu").append(fullmenu);
+			  fullmenu="<div style='background:#"+pricebackground+"'><center><table  >"+totalmenu+"</table></center></div>"
+			$("#menu").html(fullmenu);
 			}
 				   
 			  }
@@ -258,17 +258,25 @@ function myDescription(){
 			  
 			 
 		  }
-		    $("#titledir").append(titletotval);
+		    $("#titledir").html(titletotval);
 			 if(i<=dRes.length){
 					var Hotelfooter=localStorage.getItem('Hotelfooter');
 					 var hfooter=JSON.parse(Hotelfooter);
-
+						var HotelfooterText=localStorage.getItem('HotelfooterText');
+					 var hfooterText=JSON.parse(HotelfooterText);
 					 if(hfooter!=undefined){
-						  $('#footerimage').append(hfooter)
+						  $('#footerimage').html(hfooter)
 					 }
 					 else{
 						 hfooter='display:none';
 						 $('#footerimage').attr("styles",hfooter)
+					 }
+					 if(hfooterText!=undefined){
+						  $('#footerText').html(hfooterText)
+					 }
+					 else{
+						 hfooterText='display:none';
+						 $('#footerText').attr("styles",hfooterText)
 					 }
 			  }
 		var url="directories.html?id="+dirParentid;	
@@ -353,7 +361,7 @@ function myDescription(){
 				 }
 			}
 			
-			$("#titledir").append(titletotval);
+			$("#titledir").html(titletotval);
 					
 		   event.stopPropagation();
 	});
@@ -433,6 +441,6 @@ function myDescription(){
 			}
 				
 				
-			    $("#titledir").append(titletotval);
+			    $("#titledir").html(titletotval);
 		  event.stopPropagation();
 });
