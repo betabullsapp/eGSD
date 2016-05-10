@@ -266,7 +266,9 @@ margin-top:5px;
 .footer{
 	height:30px;
 	margin-top:15px;
+	
 }
+
 @media only screen and (min-width: 500px)
 {
 	input[type="text"]{
@@ -316,6 +318,14 @@ margin-top:5px;
 }
 .dirbutton{
 	 width:68%;
+	 min-height:33px;
+	 height:auto;
+}
+.dirlogo{
+ width: 35px;
+ 
+ height: auto;
+ margin: 0 10px 0 0;
 }
 .map-logo{width:25%}	
 
@@ -328,10 +338,11 @@ margin-top:5px;
 .mapPadding{
 			padding: 0px 0px 0px 165px !important;	
 			}
-@media only screen and (max-width:320px)
+@media only screen and (max-width:500px)
 {
 	.directory-logo { width:60%;
-	border-radius:0px;}
+	border-radius:0px;
+	height:100px;}
 	.map-logo{width:75%}
 	.addPadding{
 	padding: 0px 0px 0px 30px !important;
