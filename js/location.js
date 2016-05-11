@@ -15,6 +15,9 @@
         idresult[item[0]] = decodeURIComponent(item[1]);
 		id=idresult[item[0]];
 		});
+		
+	
+	//content of app
    var locItem = Parse.Object.extend("Location");
    var locQuery = new Parse.Query(locItem);
    locQuery.equalTo('objectId',id);
@@ -53,12 +56,12 @@
 		  locationgeo=result[0].get("Geopoints");
 		  locationhtml=result[0].get("HtmlContent")
 		  locationstyle=result[0].get("StyleId")
-		  locationFrontDesk=result[0].get("FrontDesk")
+		  /* locationFrontDesk=result[0].get("FrontDesk")
 		  locationBellDesk=result[0].get("BellDesk")
 		  locationMaidDesk=result[0].get("MaidDesk")
 		  locationEmergency=result[0].get("Emergency")
 		  locationLocalAttractions=result[0].get("LocalAttractions");
-		  locationHotelDirectory=result[0].get("HotelDirectory")
+		  locationHotelDirectory=result[0].get("HotelDirectory") */
 		  var loationStyleid=locationstyle.id 
 		  
 		id=result[0].get("Directories");
@@ -199,7 +202,7 @@
 		
 		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"' class='mapPadding'>"+
 		 "<img class = 'map-logo' src='./images/map.jpg'  alt = '' >"+
-		 "<p  class='mapPadding' style='margin-left:9%'>directions</p><a>"
+		 "<p  class='mapPadding' style='margin-left:9%'> &nbsp directions</p><a>"
 		
 		localStorage.setItem( 'parentid',JSON.stringify(id));
 	
@@ -211,12 +214,12 @@
 		$("#locationgeomap").html(geomap);
 		$("#location").html(locationtitile);
 		
-		$("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
+		/* $("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
 		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
 		$("#locationMaidDesk").attr("href","tel:"+locationMaidDesk);
 		$("#locationEmergency").attr("href","tel:"+locationEmergency);
 		$("#locationLocalAttractions").attr("href","http://"+locationLocalAttractions)
-		$("#locationHotelDirectory").attr("href","http://"+locationHotelDirectory)
+		$("#locationHotelDirectory").attr("href","http://"+locationHotelDirectory) */
 	  }
 	 
 	
@@ -337,6 +340,156 @@
 			}	
 		}); //end for directory items
    }).then(function(){
+   //header
+	  var MenuItem = Parse.Object.extend("HotelMenuList");
+   var MenuQuery = new Parse.Query(MenuItem);
+   MenuQuery.equalTo('HotelId',id);
+   MenuQuery.find().then(function(menuRes){
+	   localStorage.setItem( 'Hotel',JSON.stringify(menuRes));
+	      var menuDesc=new Array();
+	      var menuSequence=new Array();
+		  var menuIcon=new Array();
+		  var menuIconSeq=new Array();
+		  var menuAction=new Array();
+		  var menuUrl=new Array();
+		  var menuUrlDis=new Array();
+		    var menuOrder=new Array();
+			var iconOrder=new Array();
+			var menulist,totmenulist="",iconlist,toticonlist="";
+	    for(var i=0;i<menuRes.length;i++){
+			menuDesc[i]=menuRes[i].get("MenuDescription");
+			menuSequence[i]=menuRes[i].get("MenuSequence");
+			menuIcon[i]=menuRes[i].get("Icon");
+			menuIconSeq[i]=menuRes[i].get("IconSequence");
+			menuAction[i]=menuRes[i].get("IconAction");
+			if(menuIcon[i]!=undefined){
+					 menuUrl[i]=menuIcon[i]._url;
+					
+				 }
+				 else{
+					  menuUrlDis[i]='display:none;';
+					 
+				 }
+			
+			if((menuSequence[i]!=undefined))
+			{
+				var json={"menuDesc":menuDesc[i],
+				          "menuSequence":menuSequence[i],
+				          "menuIcon":menuUrl[i],
+						  "menuAction":menuAction[i]
+						  };
+					menuOrder.push(json);
+			}
+			if((menuIconSeq[i]!=undefined))
+			{
+				var json={"menuDesc":menuDesc[i],
+				          "menuIconSeq":menuIconSeq[i],
+				          "menuIcon":menuUrl[i],
+						  "menuAction":menuAction[i]
+						  };
+					iconOrder.push(json);
+			}
+			
+		}
+					//menuicons
+					menuOrder.sort(function(a, b) {
+				return parseInt(a.menuSequence) - parseInt(b.menuSequence);
+				  });
+		
+				var callItems=["Service","Front Desk","Bellman","Baggage","Maid Service","Emergency"];
+				var webItems=["Local Attractions","Hotel Directory"];
+				var searchItems=["Food and Beverage","Taxi","House Phone"] 
+				for(var i=0;i<menuOrder.length;i++){
+					var mlink="";
+					for(j=0;j<callItems.length;j++)
+					{
+						if(menuOrder[i].menuDesc==callItems[j])
+						{
+							mlink="href='tel:"+menuOrder[i].menuAction+"'";
+						}
+						 
+					}
+					
+					
+					 for(k=0;k<webItems.length;k++)
+					{
+						if(menuOrder[i].menuDesc==webItems[k])
+						{
+							mlink="href='http://"+menuOrder[i].menuAction+"'";
+						}
+						 
+					}
+					for(k=0;k<searchItems.length;k++)
+					{
+						if(menuOrder[i].menuDesc==searchItems[k])
+						{
+							mlink="id='"+menuOrder[i].menuDesc+"' onclick='searchField(this.id)'";
+						}
+						 
+					}
+					
+					 if(menuOrder[i].menuDesc=="Home"){
+						 mlink="href='directories.html?id="+id+"'";
+						 
+					 }
+						 
+					menulist="<a "+mlink+"><img src="+menuOrder[i].menuIcon+" class='iconimg' title="+menuOrder[i].menuDesc+"><br>"+menuOrder[i].menuDesc+"</a>"
+					
+					totmenulist=totmenulist+menulist;
+				}
+				 localStorage.setItem('menuicons',JSON.stringify(totmenulist));
+				$(".menuItems").append(totmenulist);
+				//access icons
+					
+					iconOrder.sort(function(a, b) {
+						return parseInt(a.menuIconSeq) - parseInt(b.menuIconSeq);
+						  });
+				
+				for(var i=0;i<iconOrder.length;i++){
+					var alink=''
+				    
+					for(j=0;j<callItems.length;j++)
+					{
+						if(iconOrder[i].menuDesc==callItems[j])
+						{
+							alink="href='tel:"+iconOrder[i].menuAction+"'";
+						}
+						 
+					}
+					
+					
+					 for(k=0;k<webItems.length;k++)
+					{
+						if(iconOrder[i].menuDesc==webItems[k])
+						{
+							alink="href='http://"+iconOrder[i].menuAction+"'";
+						}
+						 
+					}
+					for(k=0;k<searchItems.length;k++)
+					{
+						if(iconOrder[i].menuDesc==searchItems[k])
+						{
+							alink="id='"+iconOrder[i].menuDesc+"' onclick='searchField(this.id)'";
+						}
+						 
+					}
+					
+					 if(iconOrder[i].menuDesc=="Home"){
+						 alink="href='directories.html?id="+id+"'";
+						
+					 }
+						 
+					
+					iconlist="<a "+alink+"><img src='"+iconOrder[i].menuIcon+"' class='iconimg' title='"+iconOrder[i].menuDesc+"'></a>"
+					toticonlist=toticonlist+iconlist;
+				}
+				 localStorage.setItem('accessicons',JSON.stringify(toticonlist));
+				$(".iconlist").append(toticonlist);
+				
+    });
+
+   }).then(function(){
 			var pItem = Parse.Object.extend("Phones");
 		  var pItemQuery = new Parse.Query(pItem);
 		  pItemQuery.limit(1000);
@@ -372,7 +525,7 @@
 			   localStorage.setItem('Style',JSON.stringify(sRes));
 			  // var val=localStorage.getItem('Style');
 	             // var result=JSON.parse(val);
-				 // console.log(result);
+				
 		   }
 		  });
    });
@@ -455,8 +608,8 @@
 					}
 				 }
 			}
-			$("#titledir").text(titletotval);
-				//console.log(directory[0]);
+			$("#titledir").html(titletotval);
+			
 				/* function compare(a,b) {
                        if (a.title < b.title)
                            return -1;
@@ -497,8 +650,83 @@
 			    $("#title").append(titlecomlete); */
 		  event.stopPropagation();
 	});
+	
+//
+function searchField(field){
+	
+	var resfield = new RegExp(field,"i")
+		//var resdining = new RegExp(textdining,"i");
+		// var resfood = new RegExp(textfood,"i");
+		// var resrestaurant = new RegExp(textrestaurant,"i");
+		 $("#titledir").empty();
+		 var dirresult=localStorage.getItem('directory');
+		 var dRes=JSON.parse(dirresult);
+		        var dirid=new Array();
+				var directory=new Array();
+				var dirtitle=new Array();
+				var dircaption=new Array();
+				var dirColor=new Array();
+				var dirLogo=new Array();
+				var dirurl=new Array();
+				var styles=new Array();
+				var TitleColor=new Array();
+				var TitleFont=new Array();
+				var dirlogoDis=new Array();
+				var dirbutton=new Array();
+				var titleval;
+				var titletotval="";
+				var titletotval1="";
+				var titletotval2="";
+				var character="";
+				var titledis="";
+				var titlecapDis="";
+				
+				//dRes.sort();
+				if(dRes.length==0){
+					titledis='display:none';
+				}
+	            for(var i=0;i<dRes.length;i++){
+					
+					
+						/* if((resdining.test(dRes[i].Title))||(resfood.test(dRes[i].Title))||(resrestaurant.test(dRes[i].Title))) */
+						if(resfield.test(dRes[i].Title))
+						{
+							if(dRes[i].LocationId==id){
+							//console.log(dRes[i]);
+						dirtitle[i]=dRes[i].Title;
+						dircaption[i]=dRes[i].Caption;
+						dirid[i]=dRes[i].objectId;
+						dirLogo[i]=dRes[i].Picture;
+						 styles[i]=dRes[i].StyleId;
+						 if(dirLogo[i]!=undefined){
+							 dirurl[i]=dirLogo[i].url;
+							
+						 }
+						 else{
+							  dirlogoDis[i]='display:none';
+							  dirbutton[i]='margin-left:43px!important';
+						 }
+						if(styles[i]!=undefined)
+						{
+						 TitleColor[i]=styles[i].TitleColor;
+						 TitleFont[i]=styles[i].TitleFont;
+						 
+						}
+						if(dircaption[i]==undefined)
+						{
+						 titlecapDis='display:none';
+						}
+						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitile+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+					    titletotval=titletotval+titleval;
+				}
+				 }
+			}
+			$("#titledir").html(titletotval);
+		  event.stopPropagation();
+	
+}	
 //search for food	
- $("#food").click(function(){
+ $("#Food").click(function(){
     //alert("The paragraph was clicked.");
 	var textfood = "Food and Beverage"
 	 var textdining = "dining";

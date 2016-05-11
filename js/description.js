@@ -10,9 +10,10 @@ function myDescription(){
         query.split("&").forEach(function(part) {
         var item = part.split("=");
         idresult[item[0]] = decodeURIComponent(item[1]);
+		
 		urlid.push(idresult[item[0]]);
-		//console.log(urlid[0])
 		});
+		
          var headertitle=urlid[2];		
 	      id=urlid[1];
 		 var location=urlid[0];
@@ -24,21 +25,29 @@ function myDescription(){
 		 
 		var hotelresult=localStorage.getItem('Hotel');
 		var hRes=JSON.parse(hotelresult);
-		 locationfooterimg=hRes[0].FooterImage
-		  locationFrontDesk=hRes[0].FrontDesk
+		 //locationfooterimg=hRes[0].FooterImage
+		  /* locationFrontDesk=hRes[0].FrontDesk
 		  locationBellDesk=hRes[0].BellDesk
 		  locationMaidDesk=hRes[0].MaidDesk
 		  locationEmergency=hRes[0].Emergency
 		  locationLocalAttractions=hRes[0].LocalAttractions;
 		  locationHotelDirectory=hRes[0].HotelDirectory
-		
+		 */
 		$("#location").html(location);
-		$("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
+		var accessicons=localStorage.getItem('accessicons');
+		var aicons=JSON.parse(accessicons);
+
+		$('.iconlist').append(aicons);
+		var menuicons=localStorage.getItem('menuicons');
+		var menu=JSON.parse(menuicons);
+		
+		$('.menuItems').append(menu);
+		/* $("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
 		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
 		$("#locationMaidDesk").attr("href","tel:"+locationMaidDesk);
 		$("#locationEmergency").attr("href","tel:"+locationEmergency);
 		$("#locationLocalAttractions").attr("href","http://"+locationLocalAttractions)
-		$("#locationHotelDirectory").attr("href","http://"+locationHotelDirectory)
+		$("#locationHotelDirectory").attr("href","http://"+locationHotelDirectory) */
 		
 		var dirresult=localStorage.getItem('directory');
 		var dRes=JSON.parse(dirresult);
@@ -62,8 +71,10 @@ function myDescription(){
 				var titlecapDis="";
 				 var pic,dirtitle='',dircaption='',dirnote='',dirdesc='',dirloc='',dirtiming='',dirprice='',dirwebsite='',websiteDis='',diremail='',emailDis='',dirpicture='',pictureDis='',dirParentid='';
 					var styles,titlefont='',titlecolor='',captionfont='',captioncolor='',descrptionfont='',descriptioncolor='',timingsfont='',dirtimingnone='',dirdescnone='';
-					var timingscolor='',pricefont='',pricecolor='',websitefont='',websitecolor='',emailfont='',emailcolor='' ,priceDis='',phonesbackground='',pricebackground='';			
+					var timingscolor='',pricefont='',pricecolor='',websitefont='',websitecolor='',emailfont='',emailcolor='' ,priceDis='',phonesbackground='',pricebackground='';	
+					
           for(var i=0;i<dRes.length;i++){
+			 
 			  if(dRes[i].objectId==id){
 				 	
 					dirtitle=dRes[i].Title;
@@ -80,7 +91,7 @@ function myDescription(){
 					var objid=dRes[i].StyleId.objectId;
 					var val=localStorage.getItem('Style');
 	                var StyleId=JSON.parse(val);
-				   // console.log(StyleId)
+				
 					for(var j=0;j<StyleId.length;j++){
 						if(StyleId[j].objectId==objid){
 					titlefont=StyleId[j].TitleFont;
@@ -188,8 +199,7 @@ function myDescription(){
 			  
 			var val=localStorage.getItem('menu');
 	        var mRes=JSON.parse(val);
-			 // console.log(mRes[0]);
-	
+			 
 	        var description=new Array();
 			var price=new Array();
 			var pricefont=new Array();
@@ -203,7 +213,7 @@ function myDescription(){
 					if(mRes[l].MenuId==id){
 							 description[l]=mRes[l].Description;
 							 price[l]=mRes[l].Price;
-						//	 console.log(mRes[i].StyleID);
+						
 							 var objid=mRes[l].StyleID.objectId
 							 var val=localStorage.getItem('Style');
 							  var result=JSON.parse(val);
@@ -365,10 +375,85 @@ function myDescription(){
 					
 		   event.stopPropagation();
 	});
+/*search field*/
+function searchField(field){
+	
+	var resfield = new RegExp(field,"i")
+	$("#titledir").empty();
+		 var parentid=localStorage.getItem('parentid');
+		var parentres=JSON.parse(parentid);
+		 var dirresult=localStorage.getItem('directory');
+		 var dRes=JSON.parse(dirresult);
+		        var dirid=new Array();
+				var directory=new Array();
+				var dirtitle=new Array();
+				var dircaption=new Array();
+				var dirColor=new Array();
+				var dirLogo=new Array();
+				var dirurl=new Array();
+				var styles=new Array();
+				var TitleColor=new Array();
+				var TitleFont=new Array();
+				var dirlogoDis=new Array();
+				var dirbutton=new Array();
+				var titleval;
+				var titletotval="";
+				var titletotval1="";
+				var titletotval2="";
+				var character="";
+				var titledis="";
+				var titlecapDis="";
+				
+				//dRes.sort();
+				if(dRes.length==0){
+					titledis='display:none';
+				}
+	            for(var i=0;i<dRes.length;i++){
+					
+					
+						/* if((resdining.test(dRes[i].Title))||(resfood.test(dRes[i].Title))||(resrestaurant.test(dRes[i].Title))) */
+						if(resfield.test(dRes[i].Title))
+						{
+							if(dRes[i].LocationId==parentres){
+						
+						dirtitle[i]=dRes[i].Title;
+						dircaption[i]=dRes[i].Caption;
+						dirid[i]=dRes[i].objectId;
+						dirLogo[i]=dRes[i].Picture;
+						 styles[i]=dRes[i].StyleId;
+						 if(dirLogo[i]!=undefined){
+							 dirurl[i]=dirLogo[i].url;
+							
+						 }
+						 else{
+							  dirlogoDis[i]='display:none';
+							  dirbutton[i]='margin-left:43px!important';
+						 }
+						if(styles[i]!=undefined)
+						{
+						 TitleColor[i]=styles[i].TitleColor;
+						 TitleFont[i]=styles[i].TitleFont;
+						 
+						}
+						if(dircaption[i]==undefined)
+						{
+						 titlecapDis='display:none';
+						}
+						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitle+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+					    titletotval=titletotval+titleval;
+						
+					}
+				 }
+			}
+				
+				
+			    $("#titledir").html(titletotval);
+		  event.stopPropagation();
+}	
 /* search for food  */	
 
 	 $("#food").click(function(){
-    //alert("The paragraph was clicked.");
+   
 	var textfood = "Food and Beverage"
 	 var textdining = "dining";
 	 var textrestaurant ="restaurant";
@@ -409,7 +494,7 @@ function myDescription(){
 					
 						if((resdining.test(dRes[i].Title))||(resfood.test(dRes[i].Title))||(resrestaurant.test(dRes[i].Title))){
 							if(dRes[i].LocationId==parentres){
-							//console.log(dRes[i]);
+							
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirid[i]=dRes[i].objectId;
