@@ -2,7 +2,7 @@
  var PARSE_JS = "diTLB99p5GHZED8SDzZ4ysNMMyXTXzJOcJi2Qww6";
  var urlid=new Array();
  var dirparentid=new Array();
- var id,locationtitle;
+ var id,locationtitle,locSubHeadStyle;
 function myDescription(){
         var query = window.location.search.substr(1);
         var idresult = {};
@@ -15,9 +15,8 @@ function myDescription(){
 		});
 		
          var headertitle=urlid[2];		
-	      id=urlid[1];
-		 var location=urlid[0];
-		 locationtitle=location;
+	      id=urlid[0];
+		 
 		 
 		 var Hotelbackground=localStorage.getItem('Hotelbackground');
 		var hbgRes=JSON.parse(Hotelbackground);
@@ -25,6 +24,8 @@ function myDescription(){
 		 
 		var hotelresult=localStorage.getItem('Hotel');
 		var hRes=JSON.parse(hotelresult);
+		locationtitle=hRes[0].Name;
+		locationsubhead=hRes[0].subheadTextField
 		 //locationfooterimg=hRes[0].FooterImage
 		  /* locationFrontDesk=hRes[0].FrontDesk
 		  locationBellDesk=hRes[0].BellDesk
@@ -33,7 +34,15 @@ function myDescription(){
 		  locationLocalAttractions=hRes[0].LocalAttractions;
 		  locationHotelDirectory=hRes[0].HotelDirectory
 		 */
-		$("#location").html(location);
+		 if(locationsubhead==undefined){
+			 locSubHeadStyle="display:none";
+			 locSubHead="";
+		 }else{
+			 locSubHead=locationsubhead;
+		 }
+		 $(".locSubHeadStyle").attr("style",locSubHeadStyle);
+		 $("#locationsubhead").html(locSubHead);
+		$("#location").html(locationtitle);
 		var accessicons=localStorage.getItem('accessicons');
 		var aicons=JSON.parse(accessicons);
 
@@ -262,7 +271,7 @@ function myDescription(){
 						 
 						}
 						
-						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitle+"&id="+dirid[i]+"&header="+dirtitles[i]+"'><button class='dirbutton' >"+dirtitles[i]+"</button></a></span></div>";
+						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitles[i]+"'><button class='dirbutton' >"+dirtitles[i]+"</button></a></span></div>";
 					titletotval=titletotval+titleval;
 			  }
 			  
@@ -290,7 +299,7 @@ function myDescription(){
 					 }
 			  }
 		var url="directories.html?id="+dirParentid;	
-		 $("#parentid").attr("href",url);
+		 $(".parentid").attr("href",url);
 		 
 }
 
@@ -362,7 +371,7 @@ function myDescription(){
 						 
 						}
 						
-						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitle+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";
+						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";
 								
 								
 					titletotval=titletotval+titleval;
@@ -439,7 +448,7 @@ function searchField(field){
 						{
 						 titlecapDis='display:none';
 						}
-						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitle+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
 					    titletotval=titletotval+titleval;
 						
 					}
@@ -518,7 +527,7 @@ function searchField(field){
 						{
 						 titlecapDis='display:none';
 						}
-						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitle+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
 					    titletotval=titletotval+titleval;
 						
 					}
