@@ -110,14 +110,17 @@ function myDescription(){
 					imagebackground=StyleId[j].Imagebackground;
 					captionfont=StyleId[j].CaptionFont;
 					captioncolor=StyleId[j].CaptionColor;
+					captionfamily=StyleId[j].CaptionFamily;
 					descrptionfont=StyleId[j].DescriptionFont;
 					descriptioncolor=StyleId[j].DescriptionColor;
 					descriptionBackground=StyleId[j].DescriptionBackground;
+					descriptionfamily=StyleId[j].DescriptionFamily;
 					phonesfont=StyleId[j].PhonesFont;
 					phonescolor=StyleId[j].PhonesColor;
 					phonesbackground=StyleId[j].PhonesBackground;
 					timingsfont=StyleId[j].TimingsFont;
 					timingscolor=StyleId[j].TimingsColor;
+					timingsfamily=StyleId[j].TimingsFamily;
 					timingbackground=StyleId[j].TimingBackground;
 					pricecolor=StyleId[j].PriceColor;
 					pricefont=StyleId[j].PriceFont;
@@ -156,7 +159,7 @@ function myDescription(){
 				   var titlecaption="<div class='section' style='background:#"+titlebackground+";' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' style='color:#"+titlecolor+";font-size:"+titlefont+";font-family:"+titlefamily+"' >"+
-				   ""+dirtitle+"<br>"+dircaption+"</div></div></div></div>"
+				   ""+dirtitle+"<br><text style='color:#"+captioncolor+";font-size:"+captionfont+";font-family:"+captionfamily+"' >"+dircaption+"</text></div></div></div></div>"
 				   $('#titlecaption').html(titlecaption);
 				   var image="<div class='section' style='background:#"+imagebackground+";' >"+
 				   "<div class='container'><div class='row' >"+
@@ -165,12 +168,12 @@ function myDescription(){
 				   $("#titleimage").html(image);
 				   var timings="<div class='section' style='background:#"+timingbackground+";"+dirtimingnone+"' >"+
 				   "<div class='container'><div class='row' >"+
-				   "<div class='col-md-12 text-center ' style='color:#"+timingscolor+";font-size:"+timingsfont+";margin-top:10px;' >"+
+				   "<div class='col-md-12 text-center ' style='color:#"+timingscolor+";font-size:"+timingsfont+";font-family:"+timingsfamily+";margin-top:10px;' >"+
 				   ""+dirtiming+"</div></div></div></div>"
 				   $('#timings').html(timings);
 				   var description="<div class='section' style='background:#"+descriptionBackground+";"+dirtimingnone+"' >"+
 				   "<div class='container'><div class='row' >"+
-				   "<div class='col-md-12 text-center ' style='color:#"+descriptioncolor+";font-size:"+descrptionfont+";margin-top:10px;' >"+
+				   "<div class='col-md-12 text-center ' style='color:#"+descriptioncolor+";font-size:"+descrptionfont+";font-family:"+descriptionfamily+";margin-top:10px;' >"+
 				   ""+dirdesc+"</div></div></div></div>"
 				   $('#description').html(description);
 				   
@@ -188,16 +191,22 @@ function myDescription(){
 							
 								phonetype[k]=pRes[k].Type;
 								phoneext[k]=pRes[k].Ext;
-								
+								var brandresult=localStorage.getItem('locationBrandstyle');
+								var bRes=JSON.parse(brandresult);
+								console.log(bRes)
+								var brandButtonColor=bRes[0].BrandButtonColor;
+								var brandFontColor=bRes[0].BrandFontColor;
+								var brandFontFamily=bRes[0].BrandFontFamily;
+
 								
 								if(phonetype[k]=="phone"){
-									 phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='tel:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:#"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
+									 phone="<p ><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='tel:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all' style='background-color:#"+brandButtonColor+"'><span class='ui-btn-text' style='color:#"+brandFontColor+";font-family:"+brandFontFamily+" !important;'>"+phonetype[k]+": "+phoneext[k]+"</span></span></a></p>";
 								}
 								if(phonetype[k]=="email"){
-									 phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='mailto:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:#"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
+									 phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='mailto: "+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'style='background-color:#"+brandButtonColor+"'><span class='ui-btn-text' style='color:#"+brandFontColor+";font-family:"+brandFontFamily+" !important;'>"+phonetype[k]+": "+phoneext[k]+"</span></span></a></p>";
 								}
 								if(phonetype[k]=="website"){
-									phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_blank' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='http://"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all'><span class='ui-btn-text' style='font-size:"+phonesfont+"px !important;color:#"+phonescolor+" !important;'>"+phonetype[k]+":"+phoneext[k]+"</span></span></a></p>";
+									phone="<p><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_blank' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='http://"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all' style='background-color:#"+brandButtonColor+"'><span class='ui-btn-text' style='color:#"+brandFontColor+";font-family:"+brandFontFamily+" !important;'>"+phonetype[k]+": "+phoneext[k]+"</span></span></a></p>";
 								}
 							phonetot=phonetot+phone;	  	
 						}
@@ -214,6 +223,7 @@ function myDescription(){
 			var price=new Array();
 			var pricefont=new Array();
 			var pricecolor=new Array();
+			var pricefamily=new Array();
 			var descriptioncolor=new Array();
 			var descrptionfont=new Array();
 			var totalmenu='',menu;
@@ -231,12 +241,11 @@ function myDescription(){
 							  if(result[m].objectId==objid){
 									 pricecolor[l]=result[m].PriceColor;
 									 pricefont[l]=result[m].PriceFont;
-									 descriptioncolor[l]=result[m].DescriptionColor;
-									 descrptionfont[l]=result[m].DescriptionFont;
+									 pricefamily[l]=result[m].PriceFamily;
 							  }
 						  }
 						 
-						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+descrptionfont[l]+"px !important;color:#"+descriptioncolor[l]+" !important;padding-right:60px;padding-bottom:30px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+"px !important;color:#"+pricecolor[l]+" !important;padding-bottom:30px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
+						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+pricefont[l]+" !important;font-family:"+pricefamily[l]+";color:#"+pricecolor[l]+" !important;padding-right:60px;padding-bottom:30px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+";font-family:"+pricefamily+" !important;color:#"+pricecolor[l]+" !important;padding-bottom:30px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
 						 totalmenu=totalmenu+menu;
 					}
 				}
@@ -257,7 +266,7 @@ function myDescription(){
 						 }
 						 else{
 							  dirlogoDis[i]='display:none';
-							  dirbutton[i]='margin-left:43px!important';
+							  dirbutton[i]='margin-left:44px!important';
 						 }
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
