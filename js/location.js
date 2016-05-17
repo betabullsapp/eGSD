@@ -137,12 +137,18 @@
 					 locationgeopoints="display:none";
 					 locationlat="";
 					 locationlang="";
-					 
+					 /* style="margin:auto;width:100%"
+					 $('#geocss').attr("style",style) */
+					 style="col-md-12"
+					 styleclass="text-center"
+					 $('.geocss').attr("class",style)
+					
 		          }
 				  else{
 					  locationlat=locationgeo.latitude;
 					  locationlang=locationgeo.longitude;
 					  locationgeopoints="display:show;";
+					  styleclass="text-left addPadding"
 				  }	
 			if(loationStyleid!=undefined){
 			   var locStyle = Parse.Object.extend("Style");
@@ -209,7 +215,7 @@
 							   $('#footerText').attr("styles",footerText)
 						   }
 					   
-						 var dirlocationdetails="<address class='text-left addPadding' style='color:#"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
+						 var dirlocationdetails="<address class='"+styleclass+"' style='color:#"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
 						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br>"+
 						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br>"+
 						 "<text style='"+locationst+"'>"+locationstreet+"<text style='"+locationtwn+"'>, "+locationtown+"</text></text><br>"+
