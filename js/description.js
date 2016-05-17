@@ -164,16 +164,16 @@ function myDescription(){
 				   var image="<div class='section' style='background:#"+imagebackground+";' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' >"+
-				   " <div class='imgaspects'><center><img style='"+pictureDis+"' src='"+pic+"'class='center-block img-rounded margin img-responsive' ></center></div></div></div></div>"
+				   " <div class='imgaspects'><center><img style='"+pictureDis+"' src='"+pic+"'class='center-block  margin img-responsive' ></center></div></div></div></div>"
 				   $("#titleimage").html(image);
 				   var timings="<div class='section' style='background:#"+timingbackground+";"+dirtimingnone+"' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' style='color:#"+timingscolor+";font-size:"+timingsfont+";font-family:"+timingsfamily+";margin-top:10px;' >"+
 				   ""+dirtiming+"</div></div></div></div>"
 				   $('#timings').html(timings);
-				   var description="<div class='section' style='background:#"+descriptionBackground+";"+dirtimingnone+"' >"+
+				   var description="<div class='section' style='"+dirdescnone+"' >"+
 				   "<div class='container'><div class='row' >"+
-				   "<div class='col-md-12 text-center ' style='color:#"+descriptioncolor+";font-size:"+descrptionfont+";font-family:"+descriptionfamily+";margin-top:10px;' >"+
+				   "<div class='col-md-12 text-center' style='margin-top:10px;' >"+
 				   ""+dirdesc+"</div></div></div></div>"
 				   $('#description').html(description);
 				   
@@ -245,7 +245,7 @@ function myDescription(){
 							  }
 						  }
 						 
-						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+pricefont[l]+" !important;font-family:"+pricefamily[l]+";color:#"+pricecolor[l]+" !important;padding-right:60px;padding-bottom:30px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+";font-family:"+pricefamily+" !important;color:#"+pricecolor[l]+" !important;padding-bottom:30px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
+						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+pricefont[l]+" !important;font-family:"+pricefamily[l]+";color:#"+pricecolor[l]+" !important;padding-right:60px;padding-bottom:10px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+";font-family:"+pricefamily+" !important;color:#"+pricecolor[l]+" !important;padding-bottom:10px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
 						 totalmenu=totalmenu+menu;
 					}
 				}

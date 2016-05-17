@@ -243,6 +243,7 @@ padding-left: 58px;
 }
 .backbutton{
 padding:6px 6px 6px 6px;
+
 }
 .guest {
 margin-right:65px;
@@ -324,7 +325,7 @@ margin-top:5px;
 .dirlogo{
  width: 35px;
  
- height: auto;
+ height: 35PX;
  margin: 0 9px 0 0;
 }
 .map-logo{width:25%}	
@@ -340,6 +341,10 @@ margin-top:5px;
 			}
 @media only screen and (max-width:500px)
 {
+	
+	.iconCenter{
+	text-align:left !important;
+}
 				.directory-logo { width:60%;
 				border-radius:0px;
 				height:100px;}
@@ -369,9 +374,12 @@ margin-top:5px;
 			  max-width:60% !important;
 			  margin-left:
 			} 
+			
 
 }
-
+.iconCenter{
+	text-align:center !important;
+}
  .imgaspects{
 	overflow: hidden;
 width: 100%;
