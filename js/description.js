@@ -164,7 +164,7 @@ function myDescription(){
 				   var image="<div class='section' style='background:#"+imagebackground+";' >"+
 				   "<div class='container'><div class='row' >"+
 				   "<div class='col-md-12 text-center ' >"+
-				   "<center><img style='"+pictureDis+"' src='"+pic+"'class='center-block img-rounded margin directory-logo' ></center></div></div></div>"
+				   " <div class='imgaspects'><center><img style='"+pictureDis+"' src='"+pic+"'class='center-block img-rounded margin img-responsive' ></center></div></div></div></div>"
 				   $("#titleimage").html(image);
 				   var timings="<div class='section' style='background:#"+timingbackground+";"+dirtimingnone+"' >"+
 				   "<div class='container'><div class='row' >"+
