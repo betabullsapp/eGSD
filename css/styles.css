@@ -351,5 +351,8 @@ margin-top:5px;
 		.mapPadding{
 			padding: 0px 0px 0px 0px !important;	
 			}
+			.guest {
+margin-right:0px;
+}
 }
 
