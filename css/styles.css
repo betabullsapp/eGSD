@@ -1,8 +1,8 @@
 .iconimg{
-	width:23px;
-	height:23px;
-	margin-left:12px;
-	margin-right:12px;
+	width:32px;
+	height:32px;
+
+	margin-right:10px;
 }
 .dropbtn {
     background-color: black;
@@ -394,3 +394,9 @@ margin: 0 auto;
   max-width:25%;
   margin-left:
 } 
+
+
+.navbar { min-height:32px !important; }
+
+#textbox {padding:0px !important; height:26px !important; }
+
