@@ -105,6 +105,7 @@ function myDescription(){
 						if(StyleId[j].objectId==objid){
 					titlefont=StyleId[j].TitleFont;
 					titlecolor=StyleId[j].TitleColor;
+					titlefamily=StyleId[j].TitleFamily;
 					titlebackground=StyleId[j].TitleBackground;
 					imagebackground=StyleId[j].Imagebackground;
 					captionfont=StyleId[j].CaptionFont;
@@ -154,7 +155,7 @@ function myDescription(){
 					{diremail='';emailDis='display:none;';}
 				   var titlecaption="<div class='section' style='background:#"+titlebackground+";' >"+
 				   "<div class='container'><div class='row' >"+
-				   "<div class='col-md-12 text-center ' style='color:#"+titlecolor+";font-size:"+titlefont+"' >"+
+				   "<div class='col-md-12 text-center ' style='color:#"+titlecolor+";font-size:"+titlefont+";font-family:"+titlefamily+"' >"+
 				   ""+dirtitle+"<br>"+dircaption+"</div></div></div></div>"
 				   $('#titlecaption').html(titlecaption);
 				   var image="<div class='section' style='background:#"+imagebackground+";' >"+
