@@ -149,6 +149,7 @@
 			   var StyleQuery = new Parse.Query(locStyle);
 			   StyleQuery.equalTo('objectId',loationStyleid);
 			   StyleQuery.find().then(function(result){
+				   localStorage.setItem('locationBrandstyle',JSON.stringify(result));
 				   locBackground=result[0].get("LocationBackground")
 				    locTextFont=result[0].get("LocationTextFont")
 					locTextColor=result[0].get("LocationTextColor")
@@ -279,7 +280,6 @@
 			if(dRes[i].get("DirectoryID")==id){
 				  
 							dirtitle[i]=dRes[i].get("Title");
-							dircaption[i]=dRes[i].get("Caption");
 							dirid[i]=dRes[i].id;
 							dirLogo[i]=dRes[i].get("Picture");
 				if(dirLogo[i]!=undefined){
@@ -288,12 +288,9 @@
 				 }
 				 else{
 					  dirlogoDis[i]='display:none;';
-					  dirbutton[i]='margin-left:43px!important';
+					  dirbutton[i]='margin-left:44px!important';
 				 }
-				 if(dircaption[i]==undefined)
-				{
-				 titlecapDis='display:none';
-				}
+
 				
 				
 				/* var json={"title":dirtitle[i],
@@ -305,7 +302,13 @@
 						  "dirlogodis": dirlogoDis[i]
 						  };
 				directory.push(json); */
-					 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' >"+dirtitle[i]+"</button></a></span></div>";	
+						var brandresult=localStorage.getItem('locationBrandstyle');
+		                var bRes=JSON.parse(brandresult);
+						console.log(bRes)
+						var brandButtonColor=bRes[0].BrandButtonColor;
+						var brandFontColor=bRes[0].BrandFontColor;
+						var brandFontFamily=bRes[0].BrandFontFamily;
+					 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' style='background-color:#"+brandButtonColor+";color:#"+brandFontColor+";font-family:"+brandFontFamily+";'>"+dirtitle[i]+"</button></a></span></div>";	
 					titletotval=titletotval+titleval;
 				
 				}

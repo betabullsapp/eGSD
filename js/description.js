@@ -247,10 +247,9 @@ function myDescription(){
 			  }
 			  if(dRes[i].ParentDirectoryId==id){
 					    dirtitles[i]=dRes[i].Title;
-						dircaption[i]=dRes[i].Caption;
 						dirid[i]=dRes[i].objectId;
 						dirLogo[i]=dRes[i].Picture;
-						 styles[i]=dRes[i].StyleId;
+						
 						 
 						 if(dirLogo[i]!=undefined){
 							 dirurl[i]=dirLogo[i].url;
@@ -260,19 +259,15 @@ function myDescription(){
 							  dirlogoDis[i]='display:none';
 							  dirbutton[i]='margin-left:43px!important';
 						 }
-						if(styles[i]!=undefined)
-						{
-						 TitleColor[i]=styles[i].TitleColor;
-						 TitleFont[i]=styles[i].TitleFont;
-						 
-						}
-						if(dircaption[i]==undefined)
-						{
-						 titlecapDis='display:none';
-						 
-						}
+						var brandresult=localStorage.getItem('locationBrandstyle');
+		                var bRes=JSON.parse(brandresult);
+						console.log(bRes)
+						var brandButtonColor=bRes[0].BrandButtonColor;
+						var brandFontColor=bRes[0].BrandFontColor;
+						var brandFontFamily=bRes[0].BrandFontFamily;
+
 						
-						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitles[i]+"'><button class='dirbutton' >"+dirtitles[i]+"</button></a></span></div>";
+						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitles[i]+"'><button class='dirbutton' style='background-color:#"+brandButtonColor+";color:#"+brandFontColor+";font-family:"+brandFontFamily+";' >"+dirtitles[i]+"</button></a></span></div>";
 					titletotval=titletotval+titleval;
 			  }
 			  
