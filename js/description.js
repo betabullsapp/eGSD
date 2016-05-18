@@ -25,7 +25,13 @@ function myDescription(){
 		var hotelresult=localStorage.getItem('Hotel');
 		var hRes=JSON.parse(hotelresult);
 		locationtitle=hRes[0].Name;
-		locationsubhead=hRes[0].subheadTextField
+		 var HTitle=localStorage.getItem('HotelTitle');
+		var hTitle=JSON.parse(HTitle);
+		 $("#location").html(hTitle)
+		  var HCaption=localStorage.getItem('HotelCaption');
+		var hcaption=JSON.parse(HCaption);
+		 $("#locationcaption").html(hcaption)
+	/* 	locationsubhead=hRes[0].subheadTextField */
 		 //locationfooterimg=hRes[0].FooterImage
 		  /* locationFrontDesk=hRes[0].FrontDesk
 		  locationBellDesk=hRes[0].BellDesk
@@ -34,7 +40,7 @@ function myDescription(){
 		  locationLocalAttractions=hRes[0].LocalAttractions;
 		  locationHotelDirectory=hRes[0].HotelDirectory
 		 */
-		 if(locationsubhead==undefined){
+		/*  if(locationsubhead==undefined){
 			 locSubHeadStyle="display:none";
 			 locSubHead="";
 		 }else{
@@ -42,7 +48,7 @@ function myDescription(){
 		 }
 		 $(".locSubHeadStyle").attr("style",locSubHeadStyle);
 		 $("#locationsubhead").html(locSubHead);
-		$("#location").html(locationtitle);
+		$("#location").html(locationtitle); */
 		var accessicons=localStorage.getItem('accessicons');
 		var aicons=JSON.parse(accessicons);
 

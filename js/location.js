@@ -4,6 +4,8 @@
 		var dirid=new Array();
 	
 	var locationtitile;
+	 
+  /*   window.onpaint = myFunction() */
 	function myFunction()
   {    
 	localStorage.clear();
@@ -22,11 +24,11 @@
    var locQuery = new Parse.Query(locItem);
    locQuery.equalTo('objectId',id);
    locQuery.find().then(function(result){
-	   console.log(result);
+	   console.log(result[0]);
 	   localStorage.setItem( 'Hotel',JSON.stringify(result));
-	  if(result[0]==undefined)
+	  if(result[0]=="undefined"||result[0]==null)
 	  {
-
+			  console.log(result[0]);
 			var tempItem = Parse.Object.extend("Template");
 		   var tempQuery = new Parse.Query(tempItem);
 		   tempQuery.equalTo('objectId',id);
@@ -42,9 +44,9 @@
 	  }
 	  else{
 		 
-		 var locationimg,locationhotelimg,loctionBackground,locTextFont,locationMsg,locFooterBackground,footerimg,locsubheadstyle;
+		 var locationimg,locationhotelimg,loctionBackground,locTextFont,locationMsg,locFooterBackground,footerimg,locCaptionstyle;
 		 locationtitile=result[0].get("Name");
-		 locationsubhead=result[0].get("subheadTextField")
+		 locationcaption=result[0].get("hotelCaption")
 		 locationLogo=result[0].get("Logo");
 		 locationHotelLogo=result[0].get("HotelLogo");
 		 locationMessage=result[0].get("description");
@@ -68,22 +70,15 @@
 		  var loationStyleid=locationstyle.id 
 		  
 		id=result[0].get("Directories");
-		if(locationsubhead==undefined){
-			locsubheadstyle="display:none";
-			locsubhead="";
-		}
-		else{
-			locsubhead=locationsubhead;
-		}
+	
 		
-		$("#locationsubhead").html(locsubhead);
-		$(".subheadstyle").attr("style",locsubheadstyle);
+		
 		if(locationLogo!=undefined){
 					 locationimg=locationLogo._url;
 						$('#locationlogo').attr("src",locationimg);
 				 }
 				 else{
-					  locationimg='display:none';
+					  locationimg='display:none;margin-top:0px;margin-bottom:0px !important';
 					  	$('#locationlogo').attr("style",locationimg);
 				 }
 		if(locationHotelLogo!=undefined){
@@ -91,7 +86,7 @@
 						$('#locationhotellogo').attr("src",locationhotelimg)
 				 }
 				 else{
-					  locationhotelimg='display:none';
+					  locationhotelimg='display:none;margin-top:0px;margin-bottom:0px !important';
 					  	$('#locationhotellogo').attr("style",locationhotelimg)
 				 }
 		
@@ -134,7 +129,7 @@
 				  
 				  		  
         if(locationgeo==undefined){
-					 locationgeopoints="display:none";
+					 locationgeopoints="display:none;margin-top:0px";
 					 locationlat="";
 					 locationlang="";
 					 /* style="margin:auto;width:100%"
@@ -156,9 +151,13 @@
 			   StyleQuery.equalTo('objectId',loationStyleid);
 			   StyleQuery.find().then(function(result){
 				   localStorage.setItem('locationBrandstyle',JSON.stringify(result));
+				   locTitleColor=result[0].get("hotelTitleColor");
+				    locTitleFont=result[0].get("hotelTitleFont");
+					 locTitleFontFamily=result[0].get("hotelTitleFontFamily");
+				   locCaptionColor=result[0].get("hotelCaptionColor")
+				    locCaptionFont=result[0].get("hotelCaptionFont")
+					 locCaptionFontFamily=result[0].get("hotelCaptionFontFamily")
 				   locBackground=result[0].get("LocationBackground")
-				    locTextFont=result[0].get("LocationTextFont")
-					locTextColor=result[0].get("LocationTextColor")
 					locTextBackground=result[0].get("LocationTextBackground");
 					locHtmlColor=result[0].get("HtmlContentColor")
 					locHtmlFont=result[0].get("HtmlContentFont")
@@ -168,21 +167,41 @@
 					locFooterTextFont=result[0].get("footerFont");
 					locFooterTextFontfamily=result[0].get("footerCaptionFamily");
 					locFooterTextColor=result[0].get("FooterTextColor");
-					
-				   if(locBackground!=undefined){
-					   loctionBackground="background-color:#"+locBackground;
-						 localStorage.setItem( 'Hotelbackground',JSON.stringify(loctionBackground));
-					   $("#locationbackground").attr("style",loctionBackground)
-				   }
-				   		 if(locationMessage==undefined){
-							locationmsg='display:none';
-							$('#locationmessage').attr("style",locationmsg)
+							if(locationtitile==undefined){
+								locTitleStyle="display:none"
+								$(".titlestyle").attr("style",locTitlestyle);
+								
 							}else{
-								locationMsg="<div class='section'style='background-color:#"+locTextBackground+"'><div class='container'><div class='row' ><div class='col-md-12 text-center' style='font-size:"+
-						      locTextFont+";color:#"+locTextColor+";'>"+locationMessage+"</div></div></div></div>"
-							  $('#locationmessage').html(locationMsg)
+								 locTitle="<text style='color:#"+locTitleColor+";font-size:"+locTitleFont+";font-family:"+locTitleFontFamily+"'>"+locationtitile+"</text>"
+								  localStorage.setItem( 'HotelTitle',JSON.stringify(locTitle));
+								   	$("#location").html(locTitle);
+								 
 							}
-                            if(locationhtml==undefined){
+							if(locationcaption==undefined){
+									locCaptionstyle="display:none";
+									$(".captionstyle").attr("style",locCaptionstyle);
+							 }
+							else{
+								  
+								   locCaption="<text style='color:#"+locCaptionColor+";font-size:"+locCaptionFont+";font-family:"+locCaptionFontFamily+"'>"+locationcaption+"</text>"
+								   localStorage.setItem( 'HotelCaption',JSON.stringify(locCaption));
+								   $("#locationcaption").html(locCaption);
+			
+								   
+								}
+							   if(locBackground!=undefined){
+								   loctionBackground="background-color:#"+locBackground;
+									 localStorage.setItem( 'Hotelbackground',JSON.stringify(loctionBackground));
+								   $("#locationbackground").attr("style",loctionBackground)
+							   }
+								 if(locationMessage==undefined){
+									locationmsg='display:none';
+									$('#locationmessage').attr("style",locationmsg)
+									}else{
+										locationMsg="<div class='section'style='background-color:#"+locTextBackground+"'><div class='container'><div class='row' ><div class='col-md-12 text-center'>"+locationMessage+"</div></div></div></div>"
+									  $('#locationmessage').html(locationMsg)
+									}
+                            /* if(locationhtml==undefined){
 							locationhtml='display:none';
 							$('#locationhtml').attr("style",locationhtml)
 							}else{
@@ -190,7 +209,7 @@
 						      locHtmlFont+";color:#"+locHtmlColor+";'>"+locationhtml+"</div></div></div></div>"
 							  $('#locationhtml').html(locationHtml)
 							}
-                            										
+                            										 */
 							if(locationfooterimg!=undefined){
 									 footerimage=locationfooterimg._url;
 									footerimg="<div style='background-color:#"+locFooterBackground+";margin-top:5px;' ><center><img class='footer' src='"+footerimage+"'></center></div>"
@@ -239,7 +258,7 @@
 		
 		
 		$("#locationgeomap").html(geomap);
-		$("#location").html(locationtitile);
+	
 		
 		/* $("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
 		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
@@ -310,10 +329,14 @@
 				directory.push(json); */
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						if(bRes!=null){
+							console.log(bRes)
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
 						var brandFontFamily=bRes[0].BrandFontFamily;
+
+						}
+						
 					 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' style='background-color:#"+brandButtonColor+";color:#"+brandFontColor+";font-family:"+brandFontFamily+";'>"+dirtitle[i]+"</button></a></span></div>";	
 					titletotval=titletotval+titleval;
 				
@@ -462,7 +485,8 @@
 						 
 					 } */
 						 
-					menulist="<a "+mlink+"><img src="+menuOrder[i].menuIcon+" class='iconimg' title="+menuOrder[i].menuDesc+"><br>"+menuOrder[i].menuDesc+"</a>"
+					/* menulist="<a "+mlink+"><img src="+menuOrder[i].menuIcon+" class='iconimg' title="+menuOrder[i].menuDesc+"><br>"+menuOrder[i].menuDesc+"</a>" */
+					menulist="<a "+mlink+">"+menuOrder[i].menuDesc+"</a>"
 					
 					totmenulist=totmenulist+menulist;
 				}
