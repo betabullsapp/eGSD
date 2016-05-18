@@ -1,8 +1,8 @@
 .iconimg{
-	width:32px;
-	height:32px;
+	width:28px;
+	height:28px;
 
-	margin-right:10px;
+	margin-right:12px;
 }
 .dropbtn {
     background-color: black;
@@ -47,7 +47,8 @@
 .show {display:block;}
 
 body{
-  background-color: #CE2043;
+  background-color: #CE2043; 
+
   overflow-x:hidden;
 }
 .searchbox{
@@ -147,9 +148,9 @@ a, a:visited,a:link,a:active, a:hover{
 	margin:3px 35px 3px 0;
 }
 #location {
-	font-size:15px;
+	/* font-size:15px; */
 	margin:15px 57px 7px 0;
-	font-weight:bold;
+	/* font-weight:bold; */
 }
 .logo-font a{
 	background-color: #b8b8b8;

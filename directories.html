@@ -32,8 +32,8 @@
         <div class="row">
           <div class="col-md-12">
 		   <h1 class="text-center backIconHover align" ><a class="btn pull-left" href="home.html" style="display:none;"><i class="fa fa-chevron-circle-left"> Back</i> </a><a href="#"></a></h1>
-            <h1 class="text-center backIconHover locationpadding" id="location"></h1>
-			<p class="text-center backIconHover" class="locationsubhead" id="locationsubhead"></p>
+            <p class="text-center backIconHover locationpadding titlestyle " id="location"></p>
+			<p class="text-center backIconHover" class="captionstyle" id="locationcaption"></p>
           </div>
         </div>
       </div>
@@ -63,7 +63,8 @@
 					<img onclick="showdropdown()"   src="images/icons/menu.png"class="iconimg dropbtn">
 					  <div id="myDropdown" class="dropdown-content menuItems">
 					  
-						   <a href=""><img src="images/icons/home.png" class="iconimg" title="Home"><br>Home</a>
+						   <!-- <a href=""><img src="images/icons/home.png" class="iconimg" title="Home"><br>Home</a> -->
+						   <a href="">Home</a>
 						<!--  <a id="locationMaidDesk"><img src="images/icons/maidservice.png" class="iconimg" title="Maid Service"><br>Maid Service</a>
 						 <a href="#home"><img src="images/icons/taxi.png" class="iconimg" title="Taxi"><br>Taxi</a>
 						 <a id="locationBellDesk"><img src="images/icons/baggage.png" class="iconimg" title="Bellman/Baggage"><br>Bellman/Baggage</a>
@@ -122,8 +123,8 @@
 	
 	
 	<!-- address mapping -->
-	<div class="section" id="geocss">
-    <div class = "row" style="margin-top:10px;" >
+	<div class="section" id="geocss" style="margin-top:10px;" >
+    <div class = "row" >
     <div class = "col-md-6 col-sm-6 col-xs-6 geocss"  id="dirlocationdetails" >
        
             
@@ -304,11 +305,11 @@
 			</script>
 
 	<!--<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
-	<script src="js/location.js"></script>
+	<script src="js/location.js" async="async"></script>
    
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-         <script src="js/parse.js"></script>
-     <script src="https://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" async="async"></script>
+         <script src="js/parse.js" async="async"></script>
+     <script src="https://www.parsecdn.com/js/parse-1.2.8.min.js" async="async"></script>
 	 <br>
 </body>
 </html>
