@@ -37,7 +37,9 @@
 			   var parentid=result[0].id;
 			
 				localStorage.setItem( 'parentid',JSON.stringify(parentid));
+				 localStorage.setItem( 'HotelTitle',JSON.stringify(locationtitile));
 				$("#location").html(locationtitile);
+				
 				
 			   });
 		   
@@ -92,44 +94,44 @@
 		
 		
 	   if(locationaddress1==undefined){
-					 locationadd1='display:none';
+					 locationadd1='display:none;margin-top:0px';
 		          }else{
 					  locationadd1="";
 				  }
 
 		if(locationaddress2==undefined){
-					 locationadd2="display:none";
+					 locationadd2="display:none;margin-top:0px";
 		          }else{
 					  locationadd2="";
 				  }
 				  
         if(locationstreet==undefined){
-					 locationst="display:none";
+					 locationst="display:none;margin-top:0px";
 		          }
 				  else{
 					  locationst="";
 				  }
 				  	
 		if(locationtown==undefined){
-					 locationtwn="display:none";
+					 locationtwn="display:none;margin-top:0px";
 		          }
 				  else{
 					  locationtwn="";
 				  }
 		if(locationzip==undefined){
-					 locationzipcode="display:none";
+					 locationzipcode="display:none;margin-top:0px";
 		          }else{
 					  locationzipcode="";
 				  }
 		if(locationcountry==undefined){
-					 locationctry="display:none";
+					 locationctry="display:none;margin-top:0px";
 		          }else{
 					  locationctry="";
 				  }
 				  
 				  		  
         if(locationgeo==undefined){
-					 locationgeopoints="display:none;margin-top:0px";
+					 locationgeopoints="display:none;";
 					 locationlat="";
 					 locationlang="";
 					 /* style="margin:auto;width:100%"
@@ -658,9 +660,11 @@
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
 						console.log(bRes)
+						if(bRes!=null){
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
 						var brandFontFamily=bRes[0].BrandFontFamily;
+						}
 						 titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitile+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' style='background-color:#"+brandButtonColor+";color:#"+brandFontColor+";font-family:"+brandFontFamily+";'>"+dirtitle[i]+"</button></a></span></div>";	
 					titletotval=titletotval+titleval;
 					  
@@ -778,9 +782,11 @@ function searchField(field){
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
 						console.log(bRes)
+						if(bRes!=null){
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
 						var brandFontFamily=bRes[0].BrandFontFamily;
+						}
 						titleval="<div class='row'><span class='menudir'><img  src='"+dirurl[i]+"' class='dirlogo' style='"+dirlogoDis[i]+"'></span><span><a style='"+dirbutton[i]+"' href='description.html?title="+locationtitile+"&id="+dirid[i]+"&header="+dirtitle[i]+"'><button class='dirbutton' style='background-color:#"+brandButtonColor+";color:#"+brandFontColor+";font-family:"+brandFontFamily+";'>"+dirtitle[i]+"</button></a></span></div>";	
 					    titletotval=titletotval+titleval;
 				}
