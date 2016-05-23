@@ -33,13 +33,31 @@
 		   var tempQuery = new Parse.Query(tempItem);
 		   tempQuery.equalTo('objectId',id);
 			tempQuery.find().then(function(result){
-			   locationtitile=result[0].get("Name");
+			      locationtitile=result[0].get("Name");
+			      locationaddress1=result[0].get("Address1");
+				  locationaddress2=result[0].get("Address2");
+				  locationstreet=result[0].get("Street");
+				  locationtown=result[0].get("Town");
+				  locationzip=result[0].get("zipcode");
+				  locationcountry=result[0].get("Country");
+				  locationgeo=result[0].get("Geopoints");
+				  locationLogo=result[0].get("Logo");
+				  locationHotelLogo=result[0].get("HotelLogo");
+				  locationMessage=result[0].get("description");
+					   
 			   var parentid=result[0].id;
-			
+			  
 				localStorage.setItem( 'parentid',JSON.stringify(parentid));
 				 localStorage.setItem( 'HotelTitle',JSON.stringify(locationtitile));
 				$("#location").html(locationtitile);
-				
+				if((locationaddress1==undefined)&&(locationaddress2==undefined)&&(locationstreet==undefined)&&(locationtown==undefined)&&(locationzip==undefined)&&(locationcountry==undefined)){
+						locationgeopoints="display:none;";
+						$('.mapfun').attr("style",locationgeopoints)
+		            }
+					if((locationaddress1==undefined)&&(locationaddress2==undefined)&&(locationstreet==undefined)&&(locationtown==undefined)&&(locationzip==undefined)&&(locationcountry==undefined)&&(locationLogo==undefined)&&(locationHotelLogo==undefined)&&(locationMessage==undefined)){
+						locationcontent="display:none;";
+						$('.locationcontent').attr("style",locationcontent)
+		            }
 				
 			   });
 		   
@@ -77,7 +95,8 @@
 		
 		if(locationLogo!=undefined){
 					 locationimg=locationLogo._url;
-						$('#locationlogo').attr("src",locationimg);
+					  imgstyle="margin-top:5px;"
+						$('#locationlogo').attr("src",locationimg).attr("style",imgstyle);
 				 }
 				 else{
 					  locationimg='display:none;margin-top:0px;margin-bottom:0px !important';
@@ -85,7 +104,8 @@
 				 }
 		if(locationHotelLogo!=undefined){
 					 locationhotelimg=locationHotelLogo._url;
-						$('#locationhotellogo').attr("src",locationhotelimg)
+					
+						$('#locationhotellogo').attr("src",locationhotelimg);
 				 }
 				 else{
 					  locationhotelimg='display:none;margin-top:0px;margin-bottom:0px !important';
@@ -129,7 +149,10 @@
 					  locationctry="";
 				  }
 				  
-				  		  
+		if((locationaddress1==undefined)&&(locationaddress2==undefined)&&(locationstreet==undefined)&&(locationtown==undefined)&&(locationzip==undefined)&&(locationcountry==undefined)){
+			locationgeopoints="display:none;";
+			$('.mapfun').attr("style",locationgeopoints)
+		}		  		  
         if(locationgeo==undefined){
 					 locationgeopoints="display:none;";
 					 locationlat="";
@@ -139,7 +162,7 @@
 					 style="col-md-12"
 					 styleclass="text-center"
 					 $('.geocss').attr("class",style)
-					
+					 
 		          }
 				  else{
 					  locationlat=locationgeo.latitude;
@@ -250,7 +273,7 @@
 		
 		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"' class='mapPadding'>"+
 		 "<img class = 'map-logo' src='./images/map.jpg'  alt = '' >"+
-		 "<p  class='mapPadding' style='margin-left:9%'> &nbsp directions</p><a>"
+		 "<p  class='mapPadding' style='margin-left:9%'> &nbsp Directions</p><a>"
 		
 		localStorage.setItem( 'parentid',JSON.stringify(id));
 	
