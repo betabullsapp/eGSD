@@ -68,9 +68,9 @@
 		 locationtitile=result[0].get("Name");
 		 locationcaption=result[0].get("hotelCaption")
 		 locationLogo=result[0].get("Logo");
-		 locationHotelLogo=result[0].get("HotelLogo");
+		 locationHotelLogo=result[0].get("hotelLogo");
 		 locationMessage=result[0].get("description");
-		 locationfooterimg=result[0].get("FooterImage");
+		 locationfooterimg=result[0].get("footerImage");
 		 locationfooterText=result[0].get("footerText");
 		  locationaddress1=result[0].get("Address1");
 		  locationaddress2=result[0].get("Address2");
