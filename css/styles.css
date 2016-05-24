@@ -47,7 +47,7 @@
 .show {display:block;}
 
 body{
-  background-color: #CE2043; 
+  background-color: #000000; 
 
   overflow-x:hidden;
 }
@@ -349,7 +349,7 @@ margin-top:5px;
 				.directory-logo { width:60%;
 				border-radius:0px;
 				height:100px;}
-				.map-logo{width:75%}
+				.map-logo{width:100%}
 				.addPadding{
 				padding: 0px 0px 0px 30px !important;
 				
@@ -371,7 +371,7 @@ margin-top:5px;
 			.imgaspects img {
 			  top: 0;
 			  left: 0;
-			  min-width:60% !important;
+			  min-width:100% !important;
 			  max-width:60% !important;
 			  margin-left:
 			} 

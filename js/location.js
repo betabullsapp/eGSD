@@ -168,7 +168,7 @@
 					  locationlat=locationgeo.latitude;
 					  locationlang=locationgeo.longitude;
 					  locationgeopoints="display:show;";
-					  styleclass="text-left addPadding"
+					  styleclass="text-left"
 				  }	
 			if(loationStyleid!=undefined){
 			   var locStyle = Parse.Object.extend("Style");
@@ -237,7 +237,7 @@
                             										 */
 							if(locationfooterimg!=undefined){
 									 footerimage=locationfooterimg._url;
-									footerimg="<div style='background-color:#"+locFooterBackground+";margin-top:5px;' ><center><img class='footer' src='"+footerimage+"'></center></div>"
+									footerimg="<div style='background-color:#"+locFooterBackground+";margin-top:5px;' ><center><img class='footer'style='width:100%;height:100%' src='"+footerimage+"'></center></div>"
 									localStorage.setItem( 'Hotelfooter',JSON.stringify(footerimg));
 									  $('#footerimage').html(footerimg)
 								 }
@@ -272,8 +272,8 @@
 		  
 		
 		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"' class='mapPadding'>"+
-		 "<img class = 'map-logo' src='./images/map.jpg'  alt = '' >"+
-		 "<p  class='mapPadding' style='margin-left:9%'> &nbsp Directions</p><a>"
+		 "<img class = 'map-logo' src='./images/map.jpg' style='width:40px:height:40px' alt = '' >"+
+		 "<p  class='mapPadding' style='margin-left:9%'> &nbsp Map</p><a>"
 		
 		localStorage.setItem( 'parentid',JSON.stringify(id));
 	
