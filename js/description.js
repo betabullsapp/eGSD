@@ -175,7 +175,7 @@ function myDescription(){
 				   ""+dirtitle+"<br><text style='color:#"+captioncolor+";font-size:"+captionfont+";font-family:"+captionfamily+"' >"+dircaption+"</text></div></div></div></div>"
 				   $('#titlecaption').html(titlecaption);
 				   var image="<div class='section' style='background:#"+imagebackground+";' >"+
-				   "<div class='container'><div class='row' >"+
+				   "<div><div class='row' >"+
 				   "<div class='col-md-12 text-center ' >"+
 				   " <div class='imgaspects'><center><img style='"+pictureDis+"' src='"+pic+"'class='center-block  margin img-responsive' ></center></div></div></div></div>"
 				   $("#titleimage").html(image);
