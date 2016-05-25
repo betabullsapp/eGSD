@@ -207,10 +207,11 @@ function myDescription(){
 								var brandresult=localStorage.getItem('locationBrandstyle');
 								var bRes=JSON.parse(brandresult);
 								console.log(bRes)
+								if(bRes!=null){
 								var brandButtonColor=bRes[0].BrandButtonColor;
 								var brandFontColor=bRes[0].BrandFontColor;
 								var brandFontFamily=bRes[0].BrandFontFamily;
-
+								}
 								
 								if(phonetype[k]=="phone"){
 									 phone="<p ><a  data-role='button' class='linkbutton ui-btn ui-shadow ui-btn-corner-all ui-btn-hover-c ui-btn-up-c' target='_new' data-corners='true' data-shadow='true' data-iconshadow='true' data-wrapperels='span' data-theme='c' href='tel:"+phoneext[k]+"'><span class='ui-btn-inner ui-btn-corner-all' style='background-color:#"+brandButtonColor+"'><span class='ui-btn-text' style='color:#"+brandFontColor+";font-family:"+brandFontFamily+" !important;'>"+phonetype[k]+": "+phoneext[k]+"</span></span></a></p>";
