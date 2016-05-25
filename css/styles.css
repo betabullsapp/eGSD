@@ -149,7 +149,8 @@ a, a:visited,a:link,a:active, a:hover{
 }
 #location {
 	/* font-size:15px; */
-	margin:15px 57px 7px 0;
+/* 	margin:15px 57px 7px 0; */
+   margin:10px;
 	/* font-weight:bold; */
 }
 .logo-font a{
@@ -240,14 +241,15 @@ margin-bottom:3px;
 padding:0 35px 0 35px;
 }
 .locationpadding{
-padding-left: 58px;
+/* padding-left: 58px; */
+padding-left:0px;
 }
 .backbutton{
 padding:6px 6px 6px 6px;
 
 }
 .guest {
-margin-right:65px;
+margin-right:0px;
 }
 .dirlogo{
  width: 35px;

@@ -114,37 +114,37 @@
 		
 		
 	   if(locationaddress1==undefined){
-					 locationadd1='display:none;margin-top:0px';
+					 locationadd1='display:none;';
 		          }else{
 					  locationadd1="";
 				  }
 
 		if(locationaddress2==undefined){
-					 locationadd2="display:none;margin-top:0px";
+					 locationadd2="display:none;";
 		          }else{
 					  locationadd2="";
 				  }
 				  
         if(locationstreet==undefined){
-					 locationst="display:none;margin-top:0px";
+					 locationst="display:none;";
 		          }
 				  else{
 					  locationst="";
 				  }
 				  	
 		if(locationtown==undefined){
-					 locationtwn="display:none;margin-top:0px";
+					 locationtwn="display:none;";
 		          }
 				  else{
 					  locationtwn="";
 				  }
 		if(locationzip==undefined){
-					 locationzipcode="display:none;margin-top:0px";
+					 locationzipcode="display:none;";
 		          }else{
 					  locationzipcode="";
 				  }
 		if(locationcountry==undefined){
-					 locationctry="display:none;margin-top:0px";
+					 locationctry="display:none;";
 		          }else{
 					  locationctry="";
 				  }
@@ -161,6 +161,7 @@
 					 $('#geocss').attr("style",style) */
 					 style="col-md-12"
 					 styleclass="text-center"
+					 locationadd1="margin-right:60px;"
 					 $('.geocss').attr("class",style)
 					 
 		          }
@@ -223,7 +224,7 @@
 									locationmsg='display:none';
 									$('#locationmessage').attr("style",locationmsg)
 									}else{
-										locationMsg="<div class='section'style='background-color:#"+locTextBackground+"'><div class='container'><div class='row' ><div class='col-md-12 text-center'>"+locationMessage+"</div></div></div></div>"
+										locationMsg="<div class='section'><div class='container'><div class='row' ><div class='col-md-12 text-center'>"+locationMessage+"</div></div></div></div>"
 									  $('#locationmessage').html(locationMsg)
 									}
                             /* if(locationhtml==undefined){
@@ -237,7 +238,7 @@
                             										 */
 							if(locationfooterimg!=undefined){
 									 footerimage=locationfooterimg._url;
-									footerimg="<div style='background-color:#"+locFooterBackground+";margin-top:5px;' ><center><img class='footer'style='width:100%;height:100%' src='"+footerimage+"'></center></div>"
+									footerimg="<div style='background-color:#"+locFooterBackground+";margin-top:5px;' ><center><img class='footer'style='width:100%;height:auto' src='"+footerimage+"'></center></div>"
 									localStorage.setItem( 'Hotelfooter',JSON.stringify(footerimg));
 									  $('#footerimage').html(footerimg)
 								 }
