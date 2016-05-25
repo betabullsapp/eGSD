@@ -192,6 +192,7 @@
 					locFooterBackground=result[0].get("LocationFooterBackground")
 					locAddressFont=result[0].get("LocationAddressFont");
 					locAddressFontColor=result[0].get("LocationAddressFontColor")
+					locAddressFontFamily=result[0].get("LocationAddressFontFamily")
 					locFooterTextFont=result[0].get("footerFont");
 					locFooterTextFontfamily=result[0].get("footerCaptionFamily");
 					locFooterTextColor=result[0].get("FooterTextColor");
@@ -262,7 +263,7 @@
 							   $('#footerText').attr("styles",footerText)
 						   }
 					   
-						 var dirlocationdetails="<address class='"+styleclass+"' style='color:#"+locAddressFontColor+";font-size:"+locAddressFont+"'>"+
+						 var dirlocationdetails="<address class='"+styleclass+"' style='color:#"+locAddressFontColor+";font-size:"+locAddressFont+";font-family:"+locAddressFontFamily+"'>"+
 						 addbr+
 						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br>"+
 						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br>"+
@@ -276,7 +277,7 @@
 		  
 		
 		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"' class='mapPadding'>"+
-		 "<img class = 'imgaspects map-logo' src='./images/map.jpg'  alt = '' >"+
+		 "<img class = 'imgaspects map-logo' style='cursor:pointer' src='./images/map.jpg'  alt = '' >"+
 		 "<p  class='mapPadding text-center' > Map</p><a>"
 		
 		localStorage.setItem( 'parentid',JSON.stringify(id));
