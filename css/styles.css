@@ -331,16 +331,16 @@ margin-top:5px;
  height: 33PX;
  margin: 0 9px 0 0;
 }
-.map-logo{width:25%}	
+.map-logo{width:35%}	
 
 }
 .directory-logo { width:25%;}
-.map-logo{width:25%;}
+
 .addPadding{
 	padding: 0px 0px 0px 260px !important;
 }
 .mapPadding{
-			padding: 0px 0px 0px 165px !important;	
+			/* padding: 0px 0px 0px 165px !important;	 */
 			}
 @media only screen and (max-width:500px)
 {
