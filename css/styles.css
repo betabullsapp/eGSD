@@ -403,3 +403,6 @@ margin: 0 auto;
 
 #textbox {padding:0px !important; height:26px !important; }
 
+.ui-btn-up-c {
+	text-shadow:none !important;
+}
