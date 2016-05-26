@@ -491,11 +491,11 @@
 						mlink="href='http://"+menuOrder[i].menuAction+"' target='blank'";
 					}
 					else{
-					    mlink="id='"+menuOrder[i].menuAction+"' onclick='searchField(this.id)'";
+					    mlink="id='"+menuOrder[i].menuAction+"'  onclick='searchField(this.id)'";
 					}
 					
 					
-					menulist="<a "+mlink+">"+menuOrder[i].menuDesc+"</a>"
+					menulist="<a "+mlink+" style='cursor:pointer'>"+menuOrder[i].menuDesc+"</a>"
 					
 					totmenulist=totmenulist+menulist;
 				}
@@ -522,7 +522,7 @@
 					
 						 
 					
-					iconlist="<a "+alink+"><img src='"+iconOrder[i].menuIcon+"' class='iconimg' title='"+iconOrder[i].menuDesc+"'></a>"
+					iconlist="<a "+alink+" style='cursor:pointer'><img src='"+iconOrder[i].menuIcon+"' class='iconimg' title='"+iconOrder[i].menuDesc+"'></a>"
 					toticonlist=toticonlist+iconlist;
 				}
 				 localStorage.setItem('accessicons',JSON.stringify(toticonlist));
@@ -799,8 +799,8 @@ function searchField(field){
 						{
 							
 							
-							
-							window.open("description.html?id="+dRes[i].objectId);
+							console.log(field);
+							window.open("description.html?id="+dRes[i].objectId,"_self");
 							i=dRes.length
 				        }
 						
