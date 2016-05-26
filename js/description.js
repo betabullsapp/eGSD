@@ -518,7 +518,7 @@ function searchField(field){
 							
 							
 							
-							window.open("description.html?id="+dRes[i].objectId);
+							window.open("description.html?id="+dRes[i].objectId,'_self');
 							i=dRes.length
 				        }
 						
