@@ -500,7 +500,7 @@ function myDescription(){
 
 function searchField(field){
 	
-	
+			
 		 var dirresult=localStorage.getItem('directory');
 		 var dRes=JSON.parse(dirresult);
 		 
@@ -512,8 +512,10 @@ function searchField(field){
 	            for(var i=0;i<dRes.length;i++){
 					
 					
+						var dtitle=(dRes[i].Title).toUpperCase();
+					var sfield=field.toUpperCase();
 						
-						if((dRes[i].Title)==field)
+						if(dtitle==sfield)
 						{
 							
 							
