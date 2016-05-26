@@ -253,8 +253,8 @@
 						 
 						   if(locationfooterText!=undefined){
 							   
-							   footerText="<center><text style='font-size:"+
-						      locFooterTextFont+";font-family:"+locFooterTextFontfamily+";color:#"+locFooterTextColor+";'>"+locationfooterText+"</text></center>"	
+							   footerText="<div style='background-color:#"+locFooterBackground+";' ><center><text style='font-size:"+
+						      locFooterTextFont+";font-family:"+locFooterTextFontfamily+";color:#"+locFooterTextColor+";'>"+locationfooterText+"</text></center></div>"	
 									localStorage.setItem( 'HotelfooterText',JSON.stringify(footerText));
 									  $('#footerText').html(footerText)
 							   
