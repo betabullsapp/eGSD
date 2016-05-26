@@ -360,7 +360,6 @@
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
 						if(bRes!=null){
-							console.log(bRes)
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
 						var brandFontFamily=bRes[0].BrandFontFamily;
@@ -433,6 +432,7 @@
 		  var menuIcon=new Array();
 		  var menuIconSeq=new Array();
 		  var menuAction=new Array();
+		  var menuActionType=new Array();
 		  var menuUrl=new Array();
 		  var menuUrlDis=new Array();
 		    var menuOrder=new Array();
@@ -444,6 +444,7 @@
 			menuIcon[i]=menuRes[i].get("Icon");
 			menuIconSeq[i]=menuRes[i].get("IconSequence");
 			menuAction[i]=menuRes[i].get("IconAction");
+			menuActionType[i]=menuRes[i].get("ActionType");
 			if(menuIcon[i]!=undefined){
 					 menuUrl[i]=menuIcon[i]._url;
 					
@@ -458,7 +459,8 @@
 				var json={"menuDesc":menuDesc[i],
 				          "menuSequence":menuSequence[i],
 				          "menuIcon":menuUrl[i],
-						  "menuAction":menuAction[i]
+						  "menuAction":menuAction[i],
+						  "menuActionType":menuActionType[i]
 						  };
 					menuOrder.push(json);
 			}
@@ -467,7 +469,8 @@
 				var json={"menuDesc":menuDesc[i],
 				          "menuIconSeq":menuIconSeq[i],
 				          "menuIcon":menuUrl[i],
-						  "menuAction":menuAction[i]
+						  "menuAction":menuAction[i],
+						  "menuActionType":menuActionType[i]
 						  };
 					iconOrder.push(json);
 			}
@@ -478,97 +481,52 @@
 				return parseInt(a.menuSequence) - parseInt(b.menuSequence);
 				  });
 		
-				var callItems=["Service","Front Desk","Bellman","Bellman/Baggage","Baggage","Maid Service","Emergency"];
-				var webItems=["Local Attractions","Hotel Directory"];
-				var searchItems=["Food and Beverage","Taxi","House Phone"] 
 				for(var i=0;i<menuOrder.length;i++){
 					var mlink="";
-					for(j=0;j<callItems.length;j++)
-					{
-						if(menuOrder[i].menuDesc==callItems[j])
-						{
-							mlink="href='tel:"+menuOrder[i].menuAction+"'";
-						}
-						 
+					console.log(menuOrder[i].menuActionType);
+					if(menuOrder[i].menuActionType=="Phone Number"){
+						mlink="href='tel:"+menuOrder[i].menuAction+"'";
+					}
+					else if(menuOrder[i].menuActionType=="URL"){
+						mlink="href='http://"+menuOrder[i].menuAction+"' target='blank'";
+					}
+					else{
+					    mlink="id='"+menuOrder[i].menuAction+"' onclick='searchField(this.id)'";
 					}
 					
 					
-					 for(k=0;k<webItems.length;k++)
-					{
-						if(menuOrder[i].menuDesc==webItems[k])
-						{
-							mlink="href='http://"+menuOrder[i].menuAction+"'";
-						}
-						 
-					}
-					for(k=0;k<searchItems.length;k++)
-					{
-						if(menuOrder[i].menuDesc==searchItems[k])
-						{
-							mlink="id='"+menuOrder[i].menuDesc+"' onclick='searchField(this.id)'";
-						}
-						 
-					}
-					
-					 /* if(menuOrder[i].menuDesc=="Home"){
-						 mlink="href='directories.html?id="+id+"'";
-						 
-					 } */
-						 
-					/* menulist="<a "+mlink+"><img src="+menuOrder[i].menuIcon+" class='iconimg' title="+menuOrder[i].menuDesc+"><br>"+menuOrder[i].menuDesc+"</a>" */
 					menulist="<a "+mlink+">"+menuOrder[i].menuDesc+"</a>"
 					
 					totmenulist=totmenulist+menulist;
 				}
 				 localStorage.setItem('menuicons',JSON.stringify(totmenulist));
-				$(".menuItems").append(totmenulist);
+				 $(".menuItems").append(totmenulist);
 				//access icons
-					
-					iconOrder.sort(function(a, b) {
+				iconOrder.sort(function(a, b) {
 						return parseInt(a.menuIconSeq) - parseInt(b.menuIconSeq);
 						  });
 				
 				for(var i=0;i<iconOrder.length;i++){
 					var alink=''
-				    
-					for(j=0;j<callItems.length;j++)
-					{
-						if(iconOrder[i].menuDesc==callItems[j])
-						{
-							alink="href='tel:"+iconOrder[i].menuAction+"'";
-						}
-						 
+				    if(iconOrder[i].menuActionType=="Phone Number"){
+						alink="href='tel:"+iconOrder[i].menuAction+"'";
+					}
+					else if(iconOrder[i].menuActionType=="URL"){
+						alink="href='http://"+iconOrder[i].menuAction+"'";
+					}
+					else{
+					    alink="id='"+iconOrder[i].menuAction+"' onclick='searchField(this.id)'";
 					}
 					
 					
-					 for(k=0;k<webItems.length;k++)
-					{
-						if(iconOrder[i].menuDesc==webItems[k])
-						{
-							alink="href='http://"+iconOrder[i].menuAction+"'";
-						}
-						 
-					}
-					for(k=0;k<searchItems.length;k++)
-					{
-						if(iconOrder[i].menuDesc==searchItems[k])
-						{
-							alink="id='"+iconOrder[i].menuDesc+"' onclick='searchField(this.id)'";
-						}
-						 
-					}
 					
-					/*  if(iconOrder[i].menuDesc=="Home"){
-						 alink="href='directories.html?id="+id+"'";
-						
-					 } */
 						 
 					
 					iconlist="<a "+alink+"><img src='"+iconOrder[i].menuIcon+"' class='iconimg' title='"+iconOrder[i].menuDesc+"'></a>"
 					toticonlist=toticonlist+iconlist;
 				}
 				 localStorage.setItem('accessicons',JSON.stringify(toticonlist));
-				$(".iconlist").append(toticonlist);
+				$(".iconlist").append(toticonlist); 
 				
     });
 
