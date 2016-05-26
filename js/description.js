@@ -415,7 +415,7 @@ function myDescription(){
 		   event.stopPropagation();
 	});
 /*search field*/
-function searchField(field){
+/* function searchField(field){
 	
 	var resfield = new RegExp(field,"i")
 	$("#titledir").empty();
@@ -450,7 +450,7 @@ function searchField(field){
 	            for(var i=0;i<dRes.length;i++){
 					
 					
-						/* if((resdining.test(dRes[i].Title))||(resfood.test(dRes[i].Title))||(resrestaurant.test(dRes[i].Title))) */
+						
 						if(resfield.test(dRes[i].Title))
 						{
 							if(dRes[i].LocationId==parentres){
@@ -496,7 +496,39 @@ function searchField(field){
 				
 			    $("#titledir").html(titletotval);
 		  event.stopPropagation();
+}	 */
+
+function searchField(field){
+	
+	
+		 var dirresult=localStorage.getItem('directory');
+		 var dRes=JSON.parse(dirresult);
+		 
+		        
+				
+				if(dRes.length==0){
+					titledis='display:none';
+				}
+	            for(var i=0;i<dRes.length;i++){
+					
+					
+						
+						if((dRes[i].Title)==field)
+						{
+							
+							
+							
+							window.open("description.html?id="+dRes[i].objectId);
+							i=dRes.length
+				        }
+						
+				 }
+			
+			
+		  event.stopPropagation();
+	
 }	
+
 /* search for food  */	
 
 	 $("#food").click(function(){

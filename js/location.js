@@ -701,12 +701,9 @@
 	});
 	
 //
-function searchField(field){
+/* function searchField(field){
 	
 	var resfield = new RegExp(field,"i")
-		//var resdining = new RegExp(textdining,"i");
-		// var resfood = new RegExp(textfood,"i");
-		// var resrestaurant = new RegExp(textrestaurant,"i");
 		 $("#titledir").empty();
 		 var dirresult=localStorage.getItem('directory');
 		 var dRes=JSON.parse(dirresult);
@@ -730,18 +727,18 @@ function searchField(field){
 				var titledis="";
 				var titlecapDis="";
 				
-				//dRes.sort();
+				
 				if(dRes.length==0){
 					titledis='display:none';
 				}
 	            for(var i=0;i<dRes.length;i++){
 					
 					
-						/* if((resdining.test(dRes[i].Title))||(resfood.test(dRes[i].Title))||(resrestaurant.test(dRes[i].Title))) */
+						
 						if(resfield.test(dRes[i].Title))
 						{
 							if(dRes[i].LocationId==id){
-							//console.log(dRes[i]);
+							
 						dirtitle[i]=dRes[i].Title;
 						dircaption[i]=dRes[i].Caption;
 						dirid[i]=dRes[i].objectId;
@@ -779,6 +776,37 @@ function searchField(field){
 				 }
 			}
 			$("#titledir").html(titletotval);
+		  event.stopPropagation();
+	
+}	 */
+
+function searchField(field){
+	
+	
+		 var dirresult=localStorage.getItem('directory');
+		 var dRes=JSON.parse(dirresult);
+		 
+		        
+				
+				if(dRes.length==0){
+					titledis='display:none';
+				}
+	            for(var i=0;i<dRes.length;i++){
+					
+					
+						
+						if((dRes[i].Title)==field)
+						{
+							
+							
+							
+							window.open("description.html?id="+dRes[i].objectId);
+							i=dRes.length
+				        }
+						
+				 }
+			
+			
 		  event.stopPropagation();
 	
 }	
