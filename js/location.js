@@ -17,10 +17,11 @@
 			var hotelresult=localStorage.getItem('Hotel');
 			var hRes=JSON.parse(hotelresult);
 			//console.log(hRes.length)
-			if((hRes!=null)&&(hRes.length>0)&&(hRes[0].objectId==id)){
-			//localstorage hotel	
-			  showHotel();
-			}else{
+			/* if(navigator.onLine){
+				alert("dasfdg")
+			} */
+			if(navigator.onLine){
+				
 				localStorage.clear();
 				
 					  Parse.initialize(PARSE_APP,PARSE_JS);
@@ -230,6 +231,10 @@
 							 
 						  });
 										
+			}
+			else if((hRes!=null)&&(hRes.length>0)&&(hRes[0].objectId==id)){
+			//localstorage hotel	
+			  showHotel();
 			}
 	   function	showHotel(){
 		
