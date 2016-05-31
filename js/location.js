@@ -78,6 +78,7 @@
 							dItemQuery.limit(1000);
 							dItemQuery.include("StyleId")
 							dItemQuery.equalTo('LocationId', id);
+							dItemQuery.ascending("CustomizedOrder");
 							dItemQuery.find({
 								success: function(dRes){
 									localStorage.setItem('directory',JSON.stringify(dRes));
