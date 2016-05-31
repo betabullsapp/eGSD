@@ -186,7 +186,7 @@ function myDescription(){
 				   $('#timings').html(timings);
 				   var description="<div class='section' style='"+dirdescnone+"' >"+
 				   "<div class='container'><div class='row' >"+
-				   "<div class='col-md-12 text-center' style='margin-top:10px;' >"+
+				   "<div class='col-md-12 ' style='margin-top:10px;' >"+
 				   ""+dirdesc+"</div></div></div></div>"
 				   $('#description').html(description);
 				   
