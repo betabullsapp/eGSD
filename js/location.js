@@ -414,7 +414,7 @@
 									locationmsg='display:none';
 									$('#locationmessage').attr("style",locationmsg)
 									}else{
-										locationMsg="<div class='section'><div class='container'><div class='row' ><div class='col-md-12 text-center'>"+locationMessage+"</div></div></div></div>"
+										locationMsg="<div class='section'><div class='container'><div class='row' ><div class='col-md-12'>"+locationMessage+"</div></div></div></div>"
 									  $('#locationmessage').html(locationMsg)
 									}
                             /* if(locationhtml==undefined){
