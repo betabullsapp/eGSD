@@ -489,7 +489,7 @@
 						mlink="href='tel:"+menuOrder[i].menuAction+"'";
 					}
 					else if(menuOrder[i].menuActionType=="URL"){
-						mlink="href='http://"+menuOrder[i].menuAction+"' target='blank'";
+						mlink="href='http://"+menuOrder[i].menuAction+"' target='_blank'";
 					}
 					else{
 					    mlink="id='"+menuOrder[i].menuAction+"'  onclick='searchField(this.id)'";
@@ -513,7 +513,7 @@
 						alink="href='tel:"+iconOrder[i].menuAction+"'";
 					}
 					else if(iconOrder[i].menuActionType=="URL"){
-						alink="href='http://"+iconOrder[i].menuAction+"'";
+						alink="href='http://"+iconOrder[i].menuAction+"' target='_blank'";
 					}
 					else{
 					    alink="id='"+iconOrder[i].menuAction+"' onclick='searchField(this.id)'";
