@@ -30,7 +30,7 @@
 					   var locQuery = new Parse.Query(locItem);
 					   locQuery.equalTo('objectId',id);
 					   locQuery.find().then(function(result){
-						   console.log(result[0]);
+						 
 					        if(result[0]=="undefined"||result[0]==null)
 								  {
 									//getting template
@@ -46,7 +46,7 @@
 								localStorage.setItem( 'Hotel',JSON.stringify(result));
 								  locationstyle=result[0].get("StyleId");
 								     LocationStyleid=locationstyle.id 
-									console.log(LocationStyleid)
+									
 									/* if(LocationStyleid!=undefined){
 									   var locStyle = Parse.Object.extend("Style");
 									   var StyleQuery = new Parse.Query(locStyle);
@@ -67,7 +67,7 @@
 									   var StyleQuery = new Parse.Query(locStyle);
 									   StyleQuery.equalTo('objectId',LocationStyleid);
 									   StyleQuery.find().then(function(result1){
-										   console.log(result1)
+										  
 										   localStorage.setItem('locationBrandstyle',JSON.stringify(result1));
 									   });
 									}
@@ -147,7 +147,7 @@
 									
 											for(var i=0;i<menuOrder.length;i++){
 												var mlink="";
-												console.log(menuOrder[i].menuActionType);
+											
 												if(menuOrder[i].menuActionType=="Phone Number"){
 													mlink="href='tel:"+menuOrder[i].menuAction+"'";
 												}
@@ -263,7 +263,7 @@
 		         //id=result[0].get("Directories");
 	           if(locationLogo!=undefined){
 					 locationimg=locationLogo.url;
-					 console.log(locationLogo)
+					
 					  imgstyle="margin-top:5px;"
 						$('#locationlogo').attr("src",locationimg).attr("style",imgstyle);
 				 }
@@ -358,15 +358,14 @@
 		                    }
 						}
 						if(lstyle!=undefined){
-							console.log(lstyle)
-							console.log(localStorage)
+							
 							 var val=localStorage.getItem('locationBrandstyle');
 							               var StyleId=JSON.parse(val);
-								             console.log(StyleId)
+								            
 							if(StyleId!=null){
-										console.log(StyleId)
+										
 					locTitleColor=StyleId[0].hotelTitleColor;
-					console.log(locTitleColor)
+
 					locTitleFont=StyleId[0].hotelTitleFont;
 					 locTitleFontFamily=StyleId[0].hotelTitleFontFamily;
 				   locCaptionColor=StyleId[0].hotelCaptionColor;
@@ -388,7 +387,7 @@
 								$(".titlestyle").attr("style",locTitlestyle);
 								
 							}else{
-								console.log("asgad")
+								
 								 locTitle="<text style='color:#"+locTitleColor+";font-size:"+locTitleFont+";font-family:"+locTitleFontFamily+"'>"+locationtitile+"</text>"
 								  localStorage.setItem( 'HotelTitle',JSON.stringify(locTitle));
 								   	$("#location").html(locTitle);
@@ -481,7 +480,6 @@
 				for(var i=0;i<dRes.length;i++){
 			 
 			if(dRes[i].DirectoryID==id){
-				  
 							dirtitle[i]=dRes[i].Title;
 							dirid[i]=dRes[i].objectId;
 							dirLogo[i]=dRes[i].Picture;
@@ -587,7 +585,6 @@
 						
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
 						if(bRes!=null){
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
@@ -626,7 +623,7 @@
 						{
 							
 							
-							console.log(field);
+							
 							window.open("description.html?id="+dRes[i].objectId,"_self");
 							i=dRes.length
 				        }
