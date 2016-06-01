@@ -268,7 +268,7 @@ function myDescription(){
 			}
 				   
 			  }
-			  if(dRes[i].ParentDirectoryId==id){
+			  if(dRes[i].DirectoryID==id){
 					    dirtitles[i]=dRes[i].Title;
 						dirid[i]=dRes[i].objectId;
 						dirLogo[i]=dRes[i].Picture;
