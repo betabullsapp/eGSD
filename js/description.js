@@ -206,7 +206,7 @@ function myDescription(){
 								phoneext[k]=pRes[k].Ext;
 								var brandresult=localStorage.getItem('locationBrandstyle');
 								var bRes=JSON.parse(brandresult);
-								console.log(bRes)
+								
 								if(bRes!=null){
 								var brandButtonColor=bRes[0].BrandButtonColor;
 								var brandFontColor=bRes[0].BrandFontColor;
@@ -284,7 +284,7 @@ function myDescription(){
 						 }
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						
 						if(bRes!=null){
 							var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
@@ -394,7 +394,7 @@ function myDescription(){
 						}
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						
 						if(bRes!=null){
 							var brandButtonColor=bRes[0].BrandButtonColor;
 							var brandFontColor=bRes[0].BrandFontColor;
@@ -480,7 +480,7 @@ function myDescription(){
 						}
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						
 						if(bRes!=null){
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
@@ -601,7 +601,7 @@ function searchField(field){
 						}
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
 						var brandFontFamily=bRes[0].BrandFontFamily;
