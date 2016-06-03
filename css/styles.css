@@ -96,9 +96,9 @@ input[type="text"]:-ms-input-placeholder {  /* interner explorer*/
 ul{
   padding-left: 0;
 }
-ul li{
+/* ul li{
   list-style: none;
-}
+} */
 .mainStyleList{
   background-color: #b2b2b2;
   border: 1px solid gray;  
