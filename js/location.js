@@ -24,16 +24,16 @@
    var locQuery = new Parse.Query(locItem);
    locQuery.equalTo('objectId',id);
    locQuery.find().then(function(result){
-	   console.log(result[0]);
 	   localStorage.setItem( 'Hotel',JSON.stringify(result));
 	  if(result[0]=="undefined"||result[0]==null)
 	  {
-			  console.log(result[0]);
+			  
 			var tempItem = Parse.Object.extend("Template");
 		   var tempQuery = new Parse.Query(tempItem);
 		   tempQuery.equalTo('objectId',id);
 			tempQuery.find().then(function(result){
 			      locationtitile=result[0].get("Name");
+				   locationcaption=result[0].get("hotelCaption")
 			      locationaddress1=result[0].get("Address1");
 				  locationaddress2=result[0].get("Address2");
 				  locationstreet=result[0].get("Street");
@@ -44,12 +44,84 @@
 				  locationLogo=result[0].get("Logo");
 				  locationHotelLogo=result[0].get("HotelLogo");
 				  locationMessage=result[0].get("description");
-					   
-			   var parentid=result[0].id;
-			  
+				   locationfooterText=result[0].get("footerText");
+				locationstyle=result[0].get("StyleId");
+			     var parentid=result[0].id;
+			    var loationStyleid=locationstyle.id 
 				localStorage.setItem( 'parentid',JSON.stringify(parentid));
-				 localStorage.setItem( 'HotelTitle',JSON.stringify(locationtitile));
-				$("#location").html(locationtitile);
+				/*  localStorage.setItem( 'HotelTitle',JSON.stringify(locationtitile)); */
+				 if(loationStyleid!=undefined){
+			   var locStyle = Parse.Object.extend("Style");
+			   var StyleQuery = new Parse.Query(locStyle);
+			   StyleQuery.equalTo('objectId',loationStyleid);
+			   StyleQuery.find().then(function(result){
+				   localStorage.setItem('locationBrandstyle',JSON.stringify(result));
+				    locTitleColor=result[0].get("hotelTitleColor");
+				    locTitleFont=result[0].get("hotelTitleFont");
+					locTitleFontFamily=result[0].get("hotelTitleFontFamily");
+				    locCaptionColor=result[0].get("hotelCaptionColor")
+				    locCaptionFont=result[0].get("hotelCaptionFont")
+					locCaptionFontFamily=result[0].get("hotelCaptionFontFamily")
+				    locBackground=result[0].get("LocationBackground")
+                    locFooterBackground=result[0].get("LocationFooterBackground")
+					locFooterTextFont=result[0].get("footerFont");
+					locFooterTextFontfamily=result[0].get("footerCaptionFamily");
+					locFooterTextColor=result[0].get("FooterTextColor");
+							if(locationtitile==undefined){
+								locTitleStyle="display:none"
+								$(".titlestyle").attr("style",locTitlestyle);
+								
+							}else{
+								 locTitle="<text style='color:#"+locTitleColor+";font-size:"+locTitleFont+";font-family:"+locTitleFontFamily+"'>"+locationtitile+"</text>"
+								  localStorage.setItem( 'HotelTitle',JSON.stringify(locTitle));
+								 // console.log(locTitle)
+								   	$("#location").html(locTitle);
+								 
+							}
+							if(locationcaption==undefined){
+									locCaptionstyle="display:none";
+									$(".captionstyle").attr("style",locCaptionstyle);
+							 }
+							else{
+								  
+								   locCaption="<text style='color:#"+locCaptionColor+";font-size:"+locCaptionFont+";font-family:"+locCaptionFontFamily+"'>"+locationcaption+"</text>"
+								   localStorage.setItem( 'HotelCaption',JSON.stringify(locCaption));
+								  // console.log(locCaption)
+								   $("#locationcaption").html(locCaption);
+			
+								   
+								}
+							   if(locBackground!=undefined){
+								   loctionBackground="background-color:#"+locBackground;
+									 localStorage.setItem( 'Hotelbackground',JSON.stringify(loctionBackground));
+								   $("#locationbackground").attr("style",loctionBackground)
+							   }
+								 if(locationMessage==undefined){
+									locationmsg='display:none';
+									$('#locationmessage').attr("style",locationmsg)
+									}else{
+										locationMsg="<div class='section'><div class='container'><div class='row' ><div class='col-md-12 '>"+locationMessage+"</div></div></div></div>"
+									  $('#locationmessage').html(locationMsg)
+									}
+                           									 
+							
+						   if(locationfooterText!=undefined){
+							   
+							   footerText="<div style='background-color:#"+locFooterBackground+";margin-top:5px;' ><center><text style='font-size:"+
+						      locFooterTextFont+";font-family:"+locFooterTextFontfamily+";color:#"+locFooterTextColor+";'>"+locationfooterText+"</text></center></div>"	
+									localStorage.setItem( 'HotelfooterText',JSON.stringify(footerText));
+									  $('#footerText').html(footerText)
+							   
+						   }else{
+							   footerText='display:none';
+							   $('#footerText').attr("styles",footerText)
+						   }
+					   
+						
+		       });
+			   
+		  }
+				/* $("#location").html(locationtitile); */
 				if((locationaddress1==undefined)&&(locationaddress2==undefined)&&(locationstreet==undefined)&&(locationtown==undefined)&&(locationzip==undefined)&&(locationcountry==undefined)){
 						locationgeopoints="display:none;";
 						$('.mapfun').attr("style",locationgeopoints)
@@ -81,12 +153,7 @@
 		  locationgeo=result[0].get("Geopoints");
 		  locationhtml=result[0].get("HtmlContent");
 		  locationstyle=result[0].get("StyleId");
-		  /* locationFrontDesk=result[0].get("FrontDesk")
-		  locationBellDesk=result[0].get("BellDesk")
-		  locationMaidDesk=result[0].get("MaidDesk")
-		  locationEmergency=result[0].get("Emergency")
-		  locationLocalAttractions=result[0].get("LocalAttractions");
-		  locationHotelDirectory=result[0].get("HotelDirectory") */
+		 
 		  var loationStyleid=locationstyle.id 
 		  
 		id=result[0].get("Directories");
@@ -360,6 +427,7 @@
 				directory.push(json); */
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
+						/* console.log(bRes) */
 						if(bRes!=null){
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
@@ -484,7 +552,7 @@
 		
 				for(var i=0;i<menuOrder.length;i++){
 					var mlink="";
-					console.log(menuOrder[i].menuActionType);
+					//console.log(menuOrder[i].menuActionType);
 					if(menuOrder[i].menuActionType=="Phone Number"){
 						mlink="href='tel:"+menuOrder[i].menuAction+"'";
 					}
@@ -646,7 +714,7 @@
 						directory.push(json); */
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						//console.log(bRes)
 						if(bRes!=null){
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
@@ -802,7 +870,7 @@ function searchField(field){
 						{
 							
 							
-							console.log(field);
+							//console.log(field);
 							window.open("description.html?id="+dRes[i].objectId,"_self");
 							i=dRes.length
 				        }
