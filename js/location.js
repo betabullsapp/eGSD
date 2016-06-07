@@ -24,49 +24,67 @@
    var locQuery = new Parse.Query(locItem);
    locQuery.equalTo('objectId',id);
    locQuery.find().then(function(result){
-	   localStorage.setItem( 'Hotel',JSON.stringify(result));
+	  
 	  if(result[0]=="undefined"||result[0]==null)
 	  {
-			  
+			  var locTitleColor,locTitleFont,locTitleFontFamily,locCaptionColor,locCaptionFont,locCaptionFontFamily,locBackground,locFooterBackground,locFooterTextColor,locFooterTextFont,locFooterTextFontfamily
 			var tempItem = Parse.Object.extend("Template");
 		   var tempQuery = new Parse.Query(tempItem);
 		   tempQuery.equalTo('objectId',id);
-			tempQuery.find().then(function(result){
-			      locationtitile=result[0].get("Name");
-				   locationcaption=result[0].get("hotelCaption")
-			      locationaddress1=result[0].get("Address1");
-				  locationaddress2=result[0].get("Address2");
-				  locationstreet=result[0].get("Street");
-				  locationtown=result[0].get("Town");
-				  locationzip=result[0].get("zipcode");
-				  locationcountry=result[0].get("Country");
-				  locationgeo=result[0].get("Geopoints");
-				  locationLogo=result[0].get("Logo");
-				  locationHotelLogo=result[0].get("HotelLogo");
-				  locationMessage=result[0].get("description");
-				   locationfooterText=result[0].get("footerText");
-				locationstyle=result[0].get("StyleId");
-			     var parentid=result[0].id;
-			    var loationStyleid=locationstyle.id 
+			tempQuery.find({
+			 success: function(Tresult){
+				 localStorage.setItem( 'Hotel',JSON.stringify(Tresult));
+			      locationtitile=Tresult[0].get("Name");
+				   locationcaption=Tresult[0].get("hotelCaption")
+			      locationaddress1=Tresult[0].get("Address1");
+				  locationaddress2=Tresult[0].get("Address2");
+				  locationstreet=Tresult[0].get("Street");
+				  locationtown=Tresult[0].get("Town");
+				  locationzip=Tresult[0].get("zipcode");
+				  locationcountry=Tresult[0].get("Country");
+				  locationgeo=Tresult[0].get("Geopoints");
+				  locationLogo=Tresult[0].get("Logo");
+				  locationHotelLogo=Tresult[0].get("HotelLogo");
+				  locationMessage=Tresult[0].get("description");
+				   locationfooterText=Tresult[0].get("footerText");
+				locationstyle=Tresult[0].get("StyleId");
+			     var parentid=Tresult[0].id;
+			   
 				localStorage.setItem( 'parentid',JSON.stringify(parentid));
 				/*  localStorage.setItem( 'HotelTitle',JSON.stringify(locationtitile)); */
-				 if(loationStyleid!=undefined){
+				 if(locationstyle!=undefined){
+					/*  StyleQuery(); */
+				/* function StyleQuery(){ */
+				 var loationStyleid=locationstyle.id 
 			   var locStyle = Parse.Object.extend("Style");
 			   var StyleQuery = new Parse.Query(locStyle);
 			   StyleQuery.equalTo('objectId',loationStyleid);
-			   StyleQuery.find().then(function(result){
-				   localStorage.setItem('locationBrandstyle',JSON.stringify(result));
-				    locTitleColor=result[0].get("hotelTitleColor");
-				    locTitleFont=result[0].get("hotelTitleFont");
-					locTitleFontFamily=result[0].get("hotelTitleFontFamily");
-				    locCaptionColor=result[0].get("hotelCaptionColor")
-				    locCaptionFont=result[0].get("hotelCaptionFont")
-					locCaptionFontFamily=result[0].get("hotelCaptionFontFamily")
-				    locBackground=result[0].get("LocationBackground")
-                    locFooterBackground=result[0].get("LocationFooterBackground")
-					locFooterTextFont=result[0].get("footerFont");
-					locFooterTextFontfamily=result[0].get("footerCaptionFamily");
-					locFooterTextColor=result[0].get("FooterTextColor");
+			   StyleQuery.find({
+				   success: function(Sresult){
+					  
+					   var brandresult=localStorage.getItem('locationBrandstyle');
+		                var bRes=JSON.parse(brandresult);
+					
+				 localStorage.setItem('locationBrandstyle',JSON.stringify(Sresult));
+				    locTitleColor=Sresult[0].get("hotelTitleColor");
+				    locTitleFont=Sresult[0].get("hotelTitleFont");
+					locTitleFontFamily=Sresult[0].get("hotelTitleFontFamily");
+				    locCaptionColor=Sresult[0].get("hotelCaptionColor")
+				    locCaptionFont=Sresult[0].get("hotelCaptionFont")
+					locCaptionFontFamily=Sresult[0].get("hotelCaptionFontFamily")
+				    locBackground=Sresult[0].get("LocationBackground")
+                    locFooterBackground=Sresult[0].get("LocationFooterBackground")
+					locFooterTextFont=Sresult[0].get("footerFont");
+					locFooterTextFontfamily=Sresult[0].get("footerCaptionFamily");
+					locFooterTextColor=Sresult[0].get("FooterTextColor");
+					ShowTemplate()
+					}     
+					
+		       });
+			}   
+			else{
+				ShowTemplate()
+			}function ShowTemplate(){
 							if(locationtitile==undefined){
 								locTitleStyle="display:none"
 								$(".titlestyle").attr("style",locTitlestyle);
@@ -116,11 +134,11 @@
 							   footerText='display:none';
 							   $('#footerText').attr("styles",footerText)
 						   }
-					   
 						
-		       });
 			   
-		  }
+				 
+			   
+		  
 				/* $("#location").html(locationtitile); */
 				if((locationaddress1==undefined)&&(locationaddress2==undefined)&&(locationstreet==undefined)&&(locationtown==undefined)&&(locationzip==undefined)&&(locationcountry==undefined)){
 						locationgeopoints="display:none;";
@@ -130,12 +148,14 @@
 						locationcontent="display:none;";
 						$('.locationcontent').attr("style",locationcontent)
 		            }
-				
+					
+				 }//end of function
+				 }
 			   });
 		   
 	  }
 	  else{
-		 
+		 localStorage.setItem( 'Hotel',JSON.stringify(result));
 		 var locationimg,locationhotelimg,loctionBackground,locTextFont,locationMsg,locFooterBackground,footerimg,locCaptionstyle;
 		 locationtitile=result[0].get("Name");
 		 locationcaption=result[0].get("hotelCaption")
@@ -367,7 +387,7 @@
 	 
 	
     }).then(function(){
-		
+		setTimeout(function(){
 	    var dItem = Parse.Object.extend("DirectoryItem");
 		var dItemQuery = new Parse.Query(dItem);
 		dItemQuery.limit(1000);
@@ -488,7 +508,8 @@
 			    $("#title").append(titlecomlete); */
 				
 			}	
-		}); //end for directory items
+		});
+	},1000)		//end for directory items
    }).then(function(){
    //header
 	  var MenuItem = Parse.Object.extend("HotelMenuList");
