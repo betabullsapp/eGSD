@@ -38,6 +38,14 @@ function myDescription(){
 		if(hcaption!=null){
 		 $("#locationcaption").html(hcaption)
 		}
+		
+		var brandresult=localStorage.getItem('locationBrandstyle');
+		var bRes=JSON.parse(brandresult);
+		if(bRes!=null){
+			var SearchIconColor=bRes[0].hotelCaptionColor;
+			var SearchColor="color:"+SearchIconColor+";font-size:24px;margin-left: -10px;  margin-top:-6px !Important"
+			$('#SearchColor').attr('style',SearchColor)
+			}
 	/* 	locationsubhead=hRes[0].subheadTextField */
 		 //locationfooterimg=hRes[0].FooterImage
 		  /* locationFrontDesk=hRes[0].FrontDesk

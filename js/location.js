@@ -84,7 +84,8 @@
 			}   
 			else{
 				ShowTemplate()
-			}function ShowTemplate(){
+			}
+			function ShowTemplate(){
 							if(locationtitile==undefined){
 								locTitleStyle="display:none"
 								$(".titlestyle").attr("style",locTitlestyle);
@@ -99,6 +100,7 @@
 							if(locationcaption==undefined){
 									locCaptionstyle="display:none";
 									$(".captionstyle").attr("style",locCaptionstyle);
+									
 							 }
 							else{
 								  
@@ -106,8 +108,15 @@
 								   localStorage.setItem( 'HotelCaption',JSON.stringify(locCaption));
 								  // console.log(locCaption)
 								   $("#locationcaption").html(locCaption);
-			
-								   
+								   if(locCaptionColor==undefined){
+									   var SearchColor="color:#ffffff;font-size:24px;margin-left: -10px; margin-top:-1px !Important"
+									$('#SearchColor').attr('style',SearchColor)
+								   }else{
+									   var SearchColor="color:#"+locCaptionColor+";font-size:24px;margin-left: -10px; margin-top:-1px !Important"
+									$('#SearchColor').attr('style',SearchColor)
+								   }
+									 
+									
 								}
 							   if(locBackground!=undefined){
 								   loctionBackground="background-color:#"+locBackground;
@@ -302,8 +311,15 @@
 								   locCaption="<text style='color:#"+locCaptionColor+";font-size:"+locCaptionFont+";font-family:"+locCaptionFontFamily+"'>"+locationcaption+"</text>"
 								   localStorage.setItem( 'HotelCaption',JSON.stringify(locCaption));
 								   $("#locationcaption").html(locCaption);
-			
-								   
+								   /* var SearchColor="color:"+locCaptionColor+";font-size:24px;margin-left: -10px; margin-top:-1px !Important"
+									$('#SearchColor').attr('style',SearchColor) */
+								   if(locCaptionColor==undefined){
+									   var SearchColor="color:#ffffff;font-size:24px;margin-left: -10px; margin-top:-1px !Important"
+									$('#SearchColor').attr('style',SearchColor)
+								   }else{
+									   var SearchColor="color:#"+locCaptionColor+";font-size:24px;margin-left: -10px; margin-top:-1px !Important"
+									$('#SearchColor').attr('style',SearchColor)
+								   }
 								}
 							   if(locBackground!=undefined){
 								   loctionBackground="background-color:#"+locBackground;
