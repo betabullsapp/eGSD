@@ -165,7 +165,7 @@
 	  }
 	  else{
 		 localStorage.setItem( 'Hotel',JSON.stringify(result));
-		 var locationimg,locationhotelimg,loctionBackground,locTextFont,locationMsg,locFooterBackground,footerimg,locCaptionstyle;
+		 var locationimg,locationhotelimg,loctionBackground,locTextFont,locationMsg,locFooterBackground,footerimg,locCaptionstyle,locationgap,locationbr;
 		 locationtitile=result[0].get("Name");
 		 locationcaption=result[0].get("hotelCaption")
 		 locationLogo=result[0].get("Logo");
@@ -209,37 +209,42 @@
 				 }
 		
 		
-	   if(locationaddress1==undefined){
+	   if((locationaddress1==undefined)||(locationaddress1=="")){
 					 locationadd1='display:none;';
 		          }else{
 					  locationadd1="";
 				  }
 
-		if(locationaddress2==undefined){
+		if((locationaddress2==undefined)||(locationaddress2=="")){
 					 locationadd2="display:none;";
 		          }else{
 					  locationadd2="";
 				  }
 				  
-        if(locationstreet==undefined){
+        if((locationstreet==undefined)||(locationstreet=="")){
 					 locationst="display:none;";
 		          }
 				  else{
 					  locationst="";
 				  }
-				  	
-		if(locationtown==undefined){
+		if((locationstreet=="")&&(locationtown=="")){
+			locationbr="display:none";
+		}
+		if((locationstreet=="")||(locationtown=="")){
+			locationgap="display:none";
+		}		  	
+		if((locationtown==undefined)||(locationtown=="")){
 					 locationtwn="display:none;";
 		          }
 				  else{
 					  locationtwn="";
 				  }
-		if(locationzip==undefined){
+		if((locationzip==undefined)||(locationzip=="")){
 					 locationzipcode="display:none;";
 		          }else{
 					  locationzipcode="";
 				  }
-		if(locationcountry==undefined){
+		if((locationcountry==undefined)||(locationcountry=="")){
 					 locationctry="display:none;";
 		          }else{
 					  locationctry="";
@@ -368,22 +373,16 @@
 					   
 						 var dirlocationdetails="<address class='"+styleclass+"' style='color:#"+locAddressFontColor+";font-size:"+locAddressFont+";font-family:"+locAddressFontFamily+"'>"+
 						 addbr+
-						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br>"+
-						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br>"+
-						 "<text style='"+locationst+"'>"+locationstreet+"<text style='"+locationtwn+"'>, "+locationtown+"</text></text><br>"+
-						 "<text style='"+locationzipcode+"'>"+locationzip+"</text><br>"+"<text style='"+locationctry+"'>"+locationcountry+"</text></address>"
+						 "<text style='"+locationadd1+"'>"+locationaddress1+"</text><br style='"+locationadd1+"'>"+
+						 "<text style='"+locationadd2+"'>"+locationaddress2+"</text><br style='"+locationadd2+"'>"+
+						 "<text style='"+locationst+"'>"+locationstreet+"</text><text style='"+locationgap+"'>, </text><text style='"+locationtwn+"'>"+locationtown+"</text><br style='"+locationbr+"'>"+
+						 "<text style='"+locationzipcode+"'>"+locationzip+"</text><br style='"+locationzipcode+"'>"+"<text style='"+locationctry+"'>"+locationcountry+"</text></address>"
 						 	$("#dirlocationdetails").html(dirlocationdetails);
-		       });
-			   
-		  }
-        
-		  
-		
-		 var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"' class='mapPadding'>"+
-		 "<img class = 'imgaspects map-logo' style='cursor:pointer' src='./images/map.jpg'  alt = '' >"+
-		 "<p  class='mapPadding text-center' > Map</p><a>"
-		
-		localStorage.setItem( 'parentid',JSON.stringify(id));
+							var geomap="<a style='"+locationgeopoints+"' onclick='myNavFunc(this.id,this.lang)' id='"+locationlat+"' lang='"+locationlang+"' class='mapPadding'>"+
+							 "<img class = 'imgaspects map-logo' style='cursor:pointer' src='./images/map.jpg'  alt = '' >"+
+							 "<p  class='mapPadding text-center' style='color:#"+locAddressFontColor+";font-size:"+locAddressFont+";font-family:"+locAddressFontFamily+";cursor:pointer' > Map</p><a>"
+							
+							localStorage.setItem( 'parentid',JSON.stringify(id));
 	
 	
 		
@@ -392,6 +391,13 @@
 		
 		$("#locationgeomap").html(geomap);
 	
+		       });
+			   
+		  }
+        
+		  
+		
+		 
 		
 		/* $("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
 		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
