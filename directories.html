@@ -272,8 +272,9 @@
 
 		<script>
 		function myNavFunc(lat,lang){
-		allplatforms="http://maps.google.com/maps?q="+lat+","+lang+""
-		iphone="maps://maps.google.com/maps?q="+lat+","+lang+""
+		<!-- ?center=40.765819,-73.975866&zoom=14&views=traffic -->
+		allplatforms="http://maps.google.com/maps?q="+lat+","+lang+"&output=embed"
+		iphone="maps://maps.google.com/maps?q="+lat+","+lang+"&output=embed"
 		
 			// If it's an iPhone..
 			if( (navigator.platform.indexOf("iPhone") != -1) 
