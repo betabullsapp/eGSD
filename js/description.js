@@ -46,24 +46,7 @@ function myDescription(){
 			var SearchColor="color:"+SearchIconColor+";font-size:24px;margin-left: -10px;  margin-top:-6px !Important"
 			$('#SearchColor').attr('style',SearchColor)
 			}
-	/* 	locationsubhead=hRes[0].subheadTextField */
-		 //locationfooterimg=hRes[0].FooterImage
-		  /* locationFrontDesk=hRes[0].FrontDesk
-		  locationBellDesk=hRes[0].BellDesk
-		  locationMaidDesk=hRes[0].MaidDesk
-		  locationEmergency=hRes[0].Emergency
-		  locationLocalAttractions=hRes[0].LocalAttractions;
-		  locationHotelDirectory=hRes[0].HotelDirectory
-		 */
-		/*  if(locationsubhead==undefined){
-			 locSubHeadStyle="display:none";
-			 locSubHead="";
-		 }else{
-			 locSubHead=locationsubhead;
-		 }
-		 $(".locSubHeadStyle").attr("style",locSubHeadStyle);
-		 $("#locationsubhead").html(locSubHead);
-		$("#location").html(locationtitle); */
+	
 		var accessicons=localStorage.getItem('accessicons');
 		var aicons=JSON.parse(accessicons);
 
@@ -72,12 +55,7 @@ function myDescription(){
 		var menu=JSON.parse(menuicons);
 		
 		$('.menuItems').append(menu);
-		/* $("#locationFrontDesk").attr("href","tel:"+locationFrontDesk);
-		$("#locationBellDesk").attr("href","tel:"+locationBellDesk);
-		$("#locationMaidDesk").attr("href","tel:"+locationMaidDesk);
-		$("#locationEmergency").attr("href","tel:"+locationEmergency);
-		$("#locationLocalAttractions").attr("href","http://"+locationLocalAttractions)
-		$("#locationHotelDirectory").attr("href","http://"+locationHotelDirectory) */
+	
 		
 		var dirresult=localStorage.getItem('directory');
 		var dRes=JSON.parse(dirresult);
@@ -205,7 +183,7 @@ function myDescription(){
 			  var phoneext=new Array();
 			  var phonetot='',phone;
 			  if((pRes.length)!=0){
-			  for(var k=0;k<pRes.length;k++){
+			  for(var k=(pRes.length-1);k>=0;k--){
 				   
 				
 						if((pRes[k].PhoneId)==id){
@@ -214,7 +192,6 @@ function myDescription(){
 								phoneext[k]=pRes[k].Ext;
 								var brandresult=localStorage.getItem('locationBrandstyle');
 								var bRes=JSON.parse(brandresult);
-								console.log(bRes)
 								if(bRes!=null){
 								var brandButtonColor=bRes[0].BrandButtonColor;
 								var brandFontColor=bRes[0].BrandFontColor;
@@ -251,7 +228,8 @@ function myDescription(){
 			var totalmenu='',menu;
 			
 			if((mRes.length)!=0){
-				for(var l=0;l<mRes.length;l++){
+
+				for(var l=(mRes.length-1);l>=0;l--){
 					if(mRes[l].MenuId==id){
 							 description[l]=mRes[l].Description;
 							 price[l]=mRes[l].Price;
@@ -259,7 +237,7 @@ function myDescription(){
 							 var objid=mRes[l].StyleID.objectId
 							 var val=localStorage.getItem('Style');
 							  var result=JSON.parse(val);
-							for(var m=0;m<result.length;m++){
+							for(var m=(result.length-1);m>=0;m--){
 							  if(result[m].objectId==objid){
 									 pricecolor[l]=result[m].PriceColor;
 									 pricefont[l]=result[m].PriceFont;
@@ -267,7 +245,7 @@ function myDescription(){
 							  }
 						  }
 						 
-						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+pricefont[l]+" !important;font-family:"+pricefamily[l]+";color:#"+pricecolor[l]+" !important;padding-right:60px;padding-bottom:10px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+";font-family:"+pricefamily+" !important;color:#"+pricecolor[l]+" !important;padding-bottom:10px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
+						 menu="<tr><td class='tabheight' style='text-align:justify;font-size:"+pricefont[l]+" !important;font-family:"+pricefamily[l]+";color:#"+pricecolor[l]+" !important;padding-right:60px;padding-bottom:10px;' >"+description[l]+"</td><td class='tabheight' style='font-size:"+pricefont[l]+";font-family:"+pricefamily+" !important;color:#"+pricecolor[l]+" !important;text-align:right;padding-bottom:10px;' >"+price[l]+"</td></tr><tr></tr><tr></tr>";
 						 totalmenu=totalmenu+menu;
 					}
 				}
@@ -292,7 +270,6 @@ function myDescription(){
 						 }
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
 						if(bRes!=null){
 							var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
@@ -402,7 +379,7 @@ function myDescription(){
 						}
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+					
 						if(bRes!=null){
 							var brandButtonColor=bRes[0].BrandButtonColor;
 							var brandFontColor=bRes[0].BrandFontColor;
@@ -488,7 +465,7 @@ function myDescription(){
 						}
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						
 						if(bRes!=null){
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
@@ -609,7 +586,7 @@ function searchField(field){
 						}
 						var brandresult=localStorage.getItem('locationBrandstyle');
 		                var bRes=JSON.parse(brandresult);
-						console.log(bRes)
+						
 						var brandButtonColor=bRes[0].BrandButtonColor;
 						var brandFontColor=bRes[0].BrandFontColor;
 						var brandFontFamily=bRes[0].BrandFontFamily;
