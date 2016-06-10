@@ -94,7 +94,7 @@ input[type="text"]:-ms-input-placeholder {  /* interner explorer*/
 
 /* List Styeles*/
 ul{
-  padding-left: 0;
+  /* padding-left: 0px;  */
 }
 /* ul li{
   list-style: none;
@@ -150,8 +150,11 @@ a, a:visited,a:link,a:active, a:hover{
 #location {
 	/* font-size:15px; */
 /* 	margin:15px 57px 7px 0; */
-   margin:10px;
+   margin:0px 0 0 0;
 	/* font-weight:bold; */
+}
+#locationcaption{
+	margin:0 0 0px 0;
 }
 .logo-font a{
 	background-color: #b8b8b8;

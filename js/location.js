@@ -191,8 +191,9 @@
 		
 		if(locationLogo!=undefined){
 					 locationimg=locationLogo._url;
-					  imgstyle="margin-top:5px;"
-						$('#locationlogo').attr("src",locationimg).attr("style",imgstyle);
+					   imgstyle="margin-top:5px;"
+					/* 	$('#locationlogo').attr("src",locationimg).attr("style",imgstyle);  */
+					$('#locationlogo').attr("src",locationimg)
 				 }
 				 else{
 					  locationimg='display:none;margin-top:0px;margin-bottom:0px !important';
